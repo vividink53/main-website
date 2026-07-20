@@ -11,9 +11,9 @@
 <body>
 <div id="root" data-screen-label="Vividink Site"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.24.7/babel.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
 <script src="i18n.js"></script>
 <script type="text/babel" src="tweaks-panel.jsx"></script>
@@ -23,14 +23,14 @@
 <script type="text/babel">
 const { useState, useEffect, useRef } = React;
 
-const TWEAK_DEFAULTS = {
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "lang": "ar",
   "redIntensity": 100,
   "heroVideoOpacity": 78,
   "headingScale": 100,
   "showLoader": true,
   "menuStyle": "overlay"
-};
+}/*EDITMODE-END*/;
 
 const detectLang = () => {
   if (typeof navigator === 'undefined') return 'en';
@@ -46,30 +46,37 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const [firstVisit, setFirstVisit] = useState(true);
 
+  // language: tweaks override, else auto-detect
   const lang = tweaks.lang === 'auto' ? detectLang() : tweaks.lang;
 
+  // Apply lang/dir to body
   useEffect(() => {
     document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = lang;
   }, [lang]);
 
+  // Apply red intensity tint via CSS var
   useEffect(() => {
     const k = tweaks.redIntensity / 100;
+    // shift base red brightness by adjusting saturation/lightness via filter alternative
     const r = Math.round(255 * k);
     document.documentElement.style.setProperty('--vi-red', `rgb(${r}, 0, 0)`);
     document.documentElement.style.setProperty('--accent', `rgb(${r}, 0, 0)`);
   }, [tweaks.redIntensity]);
 
+  // Apply heading scale
   useEffect(() => {
     document.documentElement.style.setProperty('--heading-scale', tweaks.headingScale / 100);
   }, [tweaks.headingScale]);
 
+  // Loader (first visit only)
   useEffect(() => {
     if (!tweaks.showLoader) { setLoaded(true); setFirstVisit(false); return; }
     const t = setTimeout(() => { setLoaded(true); setFirstVisit(false); }, 1700);
     return () => clearTimeout(t);
   }, []);
 
+  // Scroll → nav style
   useEffect(() => {
     const onScroll = () => setNavScrolled(window.scrollY > 30);
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -77,12 +84,14 @@ function App() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Page change → reset scroll
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, [scene]);
 
   const onNav = (key) => { setScene(key); setMenuOpen(false); };
 
+  // Stash hero opacity for components.jsx to read
   window.__heroOpacity = tweaks.heroVideoOpacity / 100;
 
   return (
@@ -167,6 +176,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 </script>
 
 <style>
+  /* heading scale */
   .hero__display, .page-hero__title, .sec-head__title, .svc__ttl, .svc-detail__title, .about-split__txt h3, .manifesto__big {
     font-size: calc(var(--__base-fs, 1em) * var(--heading-scale, 1));
   }
