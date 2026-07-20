@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8"/>
 <title>Vividink — Creators of the Immortal Mark.</title>
@@ -11,45 +11,32 @@
 <body>
 <div id="root" data-screen-label="Vividink Site"></div>
 
-<!-- React & Babel Core CDNs -->
+<!-- React, ReactDOM, Babel (CDN) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js" crossorigin></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js" crossorigin></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.24.7/babel.min.js" crossorigin></script>
 
-<!-- Scripts & JSX Components -->
+<!-- Project Scripts -->
 <script src="scripts/i18n.js"></script>
-<script type="text/babel" src="tweaks-panel.jsx"></script>
 <script type="text/babel" src="components.jsx"></script>
 <script type="text/babel" src="pages.jsx"></script>
 
 <script type="text/babel">
-const { useState, useEffect, useRef } = React;
-
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "lang": "ar",
-  "redIntensity": 100,
-  "heroVideoOpacity": 78,
-  "headingScale": 100,
-  "showLoader": true,
-  "menuStyle": "overlay"
-}/*EDITMODE-END*/;
+const { useState, useEffect } = React;
 
 const detectLang = () => {
-  if (typeof navigator === 'undefined') return 'en';
-  const l = (navigator.language || 'en').toLowerCase();
+  if (typeof navigator === 'undefined') return 'ar';
+  const l = (navigator.language || 'ar').toLowerCase();
   return l.startsWith('ar') ? 'ar' : 'en';
 };
 
 function App() {
-  const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const [scene, setScene] = useState('home');
   const [menuOpen, setMenuOpen] = useState(false);
   const [navScrolled, setNavScrolled] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [firstVisit, setFirstVisit] = useState(true);
-
-  // language: tweaks override, else auto-detect
-  const lang = tweaks.lang === 'auto' ? detectLang() : tweaks.lang;
+  const [lang, setLang] = useState('ar');
 
   // Apply lang/dir to body
   useEffect(() => {
@@ -57,27 +44,20 @@ function App() {
     document.documentElement.lang = lang;
   }, [lang]);
 
-  // Apply red intensity tint via CSS var
+  // Set default original VividInk Red Brand Colors
   useEffect(() => {
-    const k = tweaks.redIntensity / 100;
-    const r = Math.round(255 * k);
-    document.documentElement.style.setProperty('--vi-red', `rgb(${r}, 0, 0)`);
-    document.documentElement.style.setProperty('--accent', `rgb(${r}, 0, 0)`);
-  }, [tweaks.redIntensity]);
+    document.documentElement.style.setProperty('--vi-red', 'rgb(255, 0, 0)');
+    document.documentElement.style.setProperty('--accent', 'rgb(255, 0, 0)');
+    document.documentElement.style.setProperty('--heading-scale', '1');
+  }, []);
 
-  // Apply heading scale
+  // Loader (first visit)
   useEffect(() => {
-    document.documentElement.style.setProperty('--heading-scale', tweaks.headingScale / 100);
-  }, [tweaks.headingScale]);
-
-  // Loader (first visit only)
-  useEffect(() => {
-    if (!tweaks.showLoader) { setLoaded(true); setFirstVisit(false); return; }
     const t = setTimeout(() => { setLoaded(true); setFirstVisit(false); }, 1700);
     return () => clearTimeout(t);
   }, []);
 
-  // Scroll → nav style
+  // Scroll handler
   useEffect(() => {
     const onScroll = () => setNavScrolled(window.scrollY > 30);
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -85,21 +65,20 @@ function App() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Page change → reset scroll
+  // Reset scroll on page change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, [scene]);
 
   const onNav = (key) => { setScene(key); setMenuOpen(false); };
 
-  // Stash hero opacity for components.jsx to read
-  window.__heroOpacity = tweaks.heroVideoOpacity / 100;
+  window.__heroOpacity = 0.78;
 
   return (
     <>
       {firstVisit && <Loader done={loaded} lang={lang} />}
       <ScrollRule />
-      <Nav onMenu={() => setMenuOpen(true)} onNav={onNav} lang={lang} setLang={(l) => setTweak('lang', l)} scrolled={navScrolled} />
+      <Nav onMenu={() => setMenuOpen(true)} onNav={onNav} lang={lang} setLang={setLang} scrolled={navScrolled} />
       <MenuOverlay open={menuOpen} onClose={() => setMenuOpen(false)} onNav={onNav} lang={lang} />
 
       {scene === 'home'     && <HomePage lang={lang} onNav={onNav} />}
@@ -109,75 +88,15 @@ function App() {
       {scene === 'contact'  && <ContactPage lang={lang} />}
 
       <Footer lang={lang} onNav={onNav} />
-
-      <TweaksPanel title={lang === 'ar' ? 'لوحة التعديلات' : 'Tweaks'}>
-        <TweakSection title={lang === 'ar' ? 'اللغة' : 'Language'}>
-          <TweakRadio
-            label={lang === 'ar' ? 'لغة الواجهة' : 'Interface'}
-            value={tweaks.lang}
-            onChange={v => setTweak('lang', v)}
-            options={[
-              { value: 'auto', label: lang === 'ar' ? 'تلقائي' : 'Auto' },
-              { value: 'en',   label: 'EN' },
-              { value: 'ar',   label: 'ع' },
-            ]}
-          />
-        </TweakSection>
-
-        <TweakSection title={lang === 'ar' ? 'الفيديو' : 'Hero Video'}>
-          <TweakSlider
-            label={lang === 'ar' ? 'شفافية الفيديو' : 'Opacity'}
-            value={tweaks.heroVideoOpacity}
-            onChange={v => setTweak('heroVideoOpacity', v)}
-            min={20} max={100} step={2}
-            unit="%"
-          />
-        </TweakSection>
-
-        <TweakSection title={lang === 'ar' ? 'الهوية' : 'Brand'}>
-          <TweakSlider
-            label={lang === 'ar' ? 'شدّة الأحمر' : 'Red intensity'}
-            value={tweaks.redIntensity}
-            onChange={v => setTweak('redIntensity', v)}
-            min={50} max={100} step={2}
-            unit="%"
-          />
-          <TweakSlider
-            label={lang === 'ar' ? 'حجم العناوين' : 'Heading scale'}
-            value={tweaks.headingScale}
-            onChange={v => setTweak('headingScale', v)}
-            min={75} max={120} step={5}
-            unit="%"
-          />
-        </TweakSection>
-
-        <TweakSection title={lang === 'ar' ? 'سلوك' : 'Behavior'}>
-          <TweakToggle
-            label={lang === 'ar' ? 'شاشة التحميل عند البدء' : 'Show loader on start'}
-            value={tweaks.showLoader}
-            onChange={v => setTweak('showLoader', v)}
-          />
-        </TweakSection>
-
-        <TweakSection title={lang === 'ar' ? 'الانتقال السريع' : 'Quick nav'}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
-            <TweakButton onClick={() => onNav('home')}>{T('nav.home', lang)}</TweakButton>
-            <TweakButton onClick={() => onNav('about')}>{T('nav.about', lang)}</TweakButton>
-            <TweakButton onClick={() => onNav('services')}>{T('nav.services', lang)}</TweakButton>
-            <TweakButton onClick={() => onNav('work')}>{T('nav.work', lang)}</TweakButton>
-            <TweakButton onClick={() => onNav('contact')}>{T('nav.contact', lang)}</TweakButton>
-          </div>
-        </TweakSection>
-      </TweaksPanel>
     </>
   );
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
 </script>
 
 <style>
-  /* heading scale */
   .hero__display, .page-hero__title, .sec-head__title, .svc__ttl, .svc-detail__title, .about-split__txt h3, .manifesto__big {
     font-size: calc(var(--__base-fs, 1em) * var(--heading-scale, 1));
   }
