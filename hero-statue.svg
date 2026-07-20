@@ -1,0 +1,28 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="veil" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1a1a"></stop>
+      <stop offset="55%" stop-color="#0a0a0a"></stop>
+      <stop offset="100%" stop-color="#000000"></stop>
+    </linearGradient>
+    <radialGradient id="spot" cx="62%" cy="38%" r="55%">
+      <stop offset="0%" stop-color="#3a3835" stop-opacity="0.9"></stop>
+      <stop offset="60%" stop-color="#141412" stop-opacity="0.4"></stop>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"></stop>
+    </radialGradient>
+    <pattern id="grain" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="4" fill="#000000"></rect>
+      <circle cx="1" cy="1" r="0.4" fill="#ffffff" opacity="0.035"></circle>
+      <circle cx="3" cy="2.6" r="0.3" fill="#ffffff" opacity="0.025"></circle>
+    </pattern>
+  </defs>
+  <rect width="1600" height="900" fill="url(#veil)"></rect>
+  <rect width="1600" height="900" fill="url(#spot)"></rect>
+  
+  <g opacity="0.82">
+    <path d="M 920,820 L 920,540 Q 900,500 880,470 Q 860,440 860,400 Q 860,320 940,300 Q 990,290 1040,310 Q 1100,340 1100,410 Q 1100,450 1080,480 Q 1060,510 1040,540 L 1040,820 Z" fill="#2a2926"></path>
+    <path d="M 920,820 L 920,560 Q 920,530 910,510 Q 895,485 895,460 L 900,440 L 910,440 L 915,470 Q 930,500 945,530 L 945,820 Z" fill="#1a1a17"></path>
+  </g>
+  <rect width="1600" height="900" fill="url(#grain)" opacity="0.6"></rect>
+</svg>

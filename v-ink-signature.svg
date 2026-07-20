@@ -1,0 +1,10 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 80" width="180" height="80" aria-label="V ink. signature">
+  <g transform="translate(4,8)">
+    <polygon points="7,4 22,4 48,60 38,70" fill="#ff0000"></polygon>
+    <polygon points="72,4 61,4 48,60 42,54" fill="#ff0000"></polygon>
+    <polygon points="22,4 31,4 46,34 38,42" fill="#000000"></polygon>
+  </g>
+  <text x="86" y="56" font-family="Miluno, &#39;Cormorant Garamond&#39;, serif" font-size="44" font-weight="400" fill="#ffffff" letter-spacing="-0.01em">ink</text>
+  <rect x="160" y="50" width="8" height="8" fill="#ff0000"></rect>
+</svg>

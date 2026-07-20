@@ -1,0 +1,392 @@
+/* ============================================================
+   VIVIDINK — Colors & Type
+   A cinematic, editorial design system.
+   Black · White · Red. Classical meets modern.
+   ============================================================ */
+
+/* -------------------- FONTS -------------------- */
+/* Per Vividink brand book:
+   • English display  — Miluno DEMO (licensed .ttf, in /fonts)
+   • Arabic display   — 29LT Zeyn (drop .ttf/.otf into /fonts when licensed)
+   • Fallback serif   — Cormorant Garamond (Google Fonts — Miluno-adjacent)
+   • Body sans        — Montserrat Light (Google Fonts)
+   Cormorant + Montserrat are loaded from Google Fonts as reliable fallbacks
+   and for editorial usage alongside Miluno. */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@200;300;400;500;600;700&display=swap');
+
+/* Miluno — official Vividink English display face (DEMO build provided). */
+@font-face {
+  font-family: 'Miluno';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/MilunoDEMO-Regular.ttf') format('truetype');
+}
+
+/* 29LT Zeyn — official Vividink Arabic display face.
+   Drop the licensed file into /fonts/ as 29LTZeyn-Regular.otf (or .woff2)
+   and this @font-face will pick it up. Until then, Arabic falls back to
+   system serifs — flagged in README. */
+@font-face {
+  font-family: '29LT Zeyn';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('29LT Zeyn'),
+       url('../fonts/29LTZeyn-Regular.ttf') format('truetype');
+}
+
+:root {
+  /* ---------- CORE PALETTE ---------- */
+  --vi-black:         #000000;   /* true black — primary surface */
+  --vi-ink:           #0a0a0a;   /* near-black, slightly warmer for layered cards */
+  --vi-coal:          #151515;   /* elevated surface on black */
+  --vi-graphite:      #1f1f1f;   /* raised card on coal */
+  --vi-smoke:         #2a2a2a;   /* hairline dividers on dark */
+  --vi-ash:           #555555;   /* disabled / tertiary ink on dark */
+  --vi-bone:          #8a8a8a;   /* secondary ink on dark */
+  --vi-pearl:         #c7c5c2;   /* muted foreground on dark */
+  --vi-paper:         #f3f1ee;   /* warm off-white — primary light surface */
+  --vi-white:         #ffffff;   /* pure white — accents only on light */
+
+  /* ---------- SIGNATURE RED ---------- */
+  --vi-red:           #ff0000;   /* brand red — the cinematic ember */
+  --vi-red-ink:       #e60000;   /* slightly tempered for dense type */
+  --vi-red-deep:      #a60000;   /* pressed/hover-darker */
+  --vi-red-blood:     #5c0000;   /* dramatic shadow red */
+  --vi-red-glow:      #ff0000;   /* for use in shadows/outer glow only */
+
+  /* ---------- SEMANTIC — DARK MODE (DEFAULT) ---------- */
+  --bg:               var(--vi-black);
+  --bg-elevated:      var(--vi-coal);
+  --bg-raised:        var(--vi-graphite);
+  --bg-inset:         var(--vi-ink);
+
+  --fg:               var(--vi-paper);       /* primary ink */
+  --fg-muted:         var(--vi-pearl);       /* secondary ink */
+  --fg-subtle:        var(--vi-bone);        /* tertiary ink */
+  --fg-faint:         var(--vi-ash);         /* quaternary / disabled */
+
+  --accent:           var(--vi-red);
+  --accent-ink:       var(--vi-red-ink);
+  --accent-hover:     var(--vi-red-deep);
+  --accent-pressed:   var(--vi-red-blood);
+
+  --rule:             var(--vi-smoke);       /* hairlines */
+  --rule-strong:      #3a3a3a;
+
+  /* ---------- TYPE FAMILIES ---------- */
+  --font-display:     'Miluno', 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+  --font-serif:       'Cormorant Garamond', 'EB Garamond', 'Garamond', Georgia, serif;
+  --font-sans:        'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  --font-arabic:      '29LT Zeyn', 'Amiri', 'Noto Naskh Arabic', 'Tahoma', serif;
+  --font-mono:        'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+  /* ---------- TYPE WEIGHTS ---------- */
+  --w-serif-light:    300;
+  --w-serif-regular:  400;
+  --w-serif-medium:   500;
+  --w-serif-semibold: 600;
+  --w-serif-bold:     700;
+
+  --w-sans-extralight: 200;
+  --w-sans-light:      300;
+  --w-sans-regular:    400;
+  --w-sans-medium:     500;
+  --w-sans-semibold:   600;
+
+  /* ---------- TYPE SCALE (modular, 1.333 — "perfect fourth") ---------- */
+  --fs-xs:      11px;
+  --fs-sm:      13px;
+  --fs-base:    15px;
+  --fs-md:      17px;
+  --fs-lg:      22px;
+  --fs-xl:      30px;
+  --fs-2xl:     42px;
+  --fs-3xl:     60px;
+  --fs-4xl:     84px;
+  --fs-5xl:    112px;
+
+  /* ---------- TRACKING (letter-spacing) ---------- */
+  --track-tight:   -0.02em;
+  --track-normal:  -0.005em;
+  --track-wide:    0.08em;
+  --track-wider:   0.18em;   /* for eyebrow labels, small-caps-like */
+  --track-widest:  0.32em;   /* for allcaps section markers */
+
+  /* ---------- LEADING (line-height) ---------- */
+  --lh-tight:   1.02;
+  --lh-snug:    1.15;
+  --lh-body:    1.55;
+  --lh-loose:   1.75;
+
+  /* ---------- SPACING (8pt with 4pt increments) ---------- */
+  --s-0:   0;
+  --s-1:   4px;
+  --s-2:   8px;
+  --s-3:   12px;
+  --s-4:   16px;
+  --s-5:   24px;
+  --s-6:   32px;
+  --s-7:   48px;
+  --s-8:   64px;
+  --s-9:   96px;
+  --s-10: 128px;
+  --s-11: 192px;
+
+  /* ---------- RADII (sharp brand — minimal rounding) ---------- */
+  --r-0:   0;         /* default — brand prefers sharp */
+  --r-1:   2px;       /* inline chips only */
+  --r-2:   4px;       /* micro UI, sparingly */
+  --r-pill: 999px;    /* pills for tags */
+
+  /* ---------- BORDERS ---------- */
+  --b-hair:    1px solid var(--rule);
+  --b-line:    1px solid var(--rule-strong);
+  --b-ink:     1px solid var(--fg);
+  --b-red:     1px solid var(--accent);
+
+  /* ---------- SHADOWS (cinematic — used sparingly) ---------- */
+  --shadow-cast:   0 24px 60px -20px rgba(0,0,0,0.75);
+  --shadow-cut:    0 1px 0 0 rgba(255,255,255,0.04), 0 0 0 1px rgba(255,255,255,0.03);
+  --shadow-red:    0 0 0 1px rgba(255,0,0,0.3), 0 18px 48px -12px rgba(255,0,0,0.35);
+  --shadow-press:  inset 0 1px 2px rgba(0,0,0,0.6);
+
+  /* ---------- MOTION ---------- */
+  --ease-cine:     cubic-bezier(0.22, 1, 0.36, 1);   /* long, dramatic */
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:   cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:      160ms;
+  --dur-base:      320ms;
+  --dur-slow:      640ms;
+  --dur-cine:     1200ms;
+
+  /* ---------- LAYOUT ---------- */
+  --content-max:   1440px;
+  --content-read:  680px;
+  --gutter:        32px;
+}
+
+/* -------------------- LIGHT / EDITORIAL PAPER MODE -------------------- */
+[data-theme="paper"] {
+  --bg:               var(--vi-paper);
+  --bg-elevated:      var(--vi-white);
+  --bg-raised:        var(--vi-white);
+  --bg-inset:         #eae7e2;
+
+  --fg:               var(--vi-black);
+  --fg-muted:         #2a2a2a;
+  --fg-subtle:        #6b6b6b;
+  --fg-faint:         #a6a6a6;
+
+  --rule:             #d9d5cf;
+  --rule-strong:      #aaa49a;
+
+  --shadow-cast:      0 24px 60px -24px rgba(0,0,0,0.22);
+  --shadow-cut:       0 0 0 1px rgba(0,0,0,0.04);
+}
+
+/* -------------------- BASE -------------------- */
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-weight: var(--w-sans-light);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  letter-spacing: var(--track-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--accent); color: var(--vi-white); }
+
+/* -------------------- SEMANTIC TYPE TOKENS -------------------- */
+/* Use these class names OR the CSS variables directly. */
+
+.vi-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-5xl);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--track-tight);
+}
+
+.vi-display-italic {
+  font-family: var(--font-serif);
+  font-weight: var(--w-serif-light);
+  font-size: var(--fs-5xl);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--track-tight);
+  font-style: italic;       /* Cormorant italic — editorial sibling of Miluno */
+}
+
+.vi-h1, h1 {
+  font-family: var(--font-serif);
+  font-weight: var(--w-serif-regular);
+  font-size: var(--fs-4xl);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--track-tight);
+}
+
+.vi-h2, h2 {
+  font-family: var(--font-serif);
+  font-weight: var(--w-serif-regular);
+  font-size: var(--fs-3xl);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--track-tight);
+}
+
+.vi-h3, h3 {
+  font-family: var(--font-serif);
+  font-weight: var(--w-serif-medium);
+  font-size: var(--fs-2xl);
+  line-height: var(--lh-snug);
+}
+
+.vi-h4, h4 {
+  font-family: var(--font-serif);
+  font-weight: var(--w-serif-medium);
+  font-size: var(--fs-xl);
+  line-height: 1.25;
+}
+
+.vi-lede {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: var(--w-serif-light);
+  font-size: var(--fs-lg);
+  line-height: 1.4;
+  color: var(--fg-muted);
+}
+
+.vi-body, p {
+  font-family: var(--font-sans);
+  font-weight: var(--w-sans-light);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  color: var(--fg);
+}
+
+.vi-body-sm {
+  font-family: var(--font-sans);
+  font-weight: var(--w-sans-light);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-body);
+  color: var(--fg-muted);
+}
+
+.vi-eyebrow {
+  font-family: var(--font-sans);
+  font-weight: var(--w-sans-medium);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-widest);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.vi-overline {
+  font-family: var(--font-sans);
+  font-weight: var(--w-sans-regular);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-wider);
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+}
+
+.vi-label {
+  font-family: var(--font-sans);
+  font-weight: var(--w-sans-medium);
+  font-size: var(--fs-sm);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+}
+
+.vi-caption {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: var(--w-serif-regular);
+  font-size: var(--fs-sm);
+  color: var(--fg-subtle);
+}
+
+.vi-pullquote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: var(--w-serif-regular);
+  font-size: var(--fs-2xl);
+  line-height: 1.25;
+  color: var(--fg);
+  border-left: 2px solid var(--accent);
+  padding-left: var(--s-5);
+}
+
+.vi-mono, code, pre {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  letter-spacing: 0;
+}
+
+/* Numeric / data */
+.vi-numeric {
+  font-family: var(--font-serif);
+  font-weight: var(--w-serif-light);
+  font-feature-settings: "lnum", "tnum";
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* -------------------- ARABIC TYPE (29LT Zeyn) -------------------- */
+/* Vividink is a bilingual brand. Arabic display uses 29LT Zeyn.
+   Apply [lang="ar"] (or add the .vi-arabic class) and text auto-swaps
+   to the Arabic stack with RTL direction. */
+
+[lang="ar"],
+.vi-arabic {
+  font-family: var(--font-arabic);
+  direction: rtl;
+  text-align: right;
+  font-feature-settings: "kern", "liga", "calt";
+}
+
+.vi-arabic-display {
+  font-family: var(--font-arabic);
+  direction: rtl;
+  font-weight: 400;
+  font-size: var(--fs-4xl);
+  line-height: 1.3;           /* Arabic needs more vertical room for descenders */
+  letter-spacing: 0;
+}
+
+.vi-arabic-body {
+  font-family: var(--font-arabic);
+  direction: rtl;
+  font-weight: 400;
+  font-size: var(--fs-md);
+  line-height: 1.85;
+}
+
+/* -------------------- COLOR ROLE TOKENS (per brand book) -------------------- */
+/* Vividink assigns a dramatic *role* to each of its three colors.
+   Use these when a component is meant to communicate one of the three
+   pillars of the brand's identity. */
+
+:root {
+  /* WHITE \u2014 "The Space of Clarity" \u2014 Formation & Branding.
+     Purity, origin, the blank page where identity is born. */
+  --role-clarity:       var(--vi-white);
+  --role-clarity-bg:    var(--vi-white);
+  --role-clarity-ink:   var(--vi-black);
+
+  /* BLACK \u2014 "The Art of Eternity" \u2014 Strategy & Trust.
+     Depth, gravity, the silent foundation. */
+  --role-eternity:      var(--vi-black);
+  --role-eternity-bg:   var(--vi-black);
+  --role-eternity-ink:  var(--vi-paper);
+
+  /* RED \u2014 "The Mind of Execution" \u2014 Digital Reach.
+     Audacity, energy, the pulse that cuts through noise. */
+  --role-reach:         var(--vi-red);
+  --role-reach-bg:      var(--vi-red);
+  --role-reach-ink:     var(--vi-white);
+}

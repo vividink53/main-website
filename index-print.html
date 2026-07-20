@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Vividink — Print</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" href="styles/site.css?v=3"/>
+<link rel="icon" href="assets/v-mark.png"/>
+
+<style>
+  /* ===== PRINT-READY OVERRIDES ===== */
+  html, body {
+    overflow: visible !important;
+    height: auto !important;
+    background: #000 !important;
+    color: #fff !important;
+  }
+
+  /* Hide all chrome: nav, menu, loader, scroll progress, tweaks panel */
+  .nav, .menu, .menu__overlay, .loader, .scroll-rule,
+  [data-tweaks-panel], .tweaks-panel,
+  #tweaks-panel-root,
+  /* Hero video (won't print well) */
+  .hero__video, .hero__curtain {
+    display: none !important;
+  }
+
+  /* Each major page section starts a new page */
+  .print-page {
+    break-before: page;
+    page-break-before: always;
+    padding: 32px 40px;
+    min-height: auto;
+    background: #000;
+    color: #fff;
+  }
+  .print-page:first-of-type {
+    break-before: auto;
+    page-break-before: auto;
+  }
+
+  .print-divider {
+    text-align: center;
+    font-family: var(--font-display, serif);
+    font-size: 11px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    padding: 18px 0 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.18);
+    margin-bottom: 36px;
+  }
+  .print-divider span { color: var(--accent, #c8102e); }
+
+  /* Force visibility of anything that might be lazy/hidden */
+  .home-page, .about-page, .services-page, .work-page, .contact-page,
+  .hero, .manifesto, .stats, .svc-rail, .work-mason, .footer {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+  }
+
+  /* Hero — replace video with static treatment */
+  .hero {
+    min-height: auto !important;
+    padding: 80px 24px 60px !important;
+    background: #000 !important;
+  }
+  .hero__inner { position: static !important; }
+
+  /* Calm down hover/animation states */
+  *, *::before, *::after {
+    animation-duration: 0s !important;
+    transition: none !important;
+  }
+
+  /* Work masonry: simplify into a clean print grid */
+  .work-mason {
+    columns: 2 !important;
+    column-gap: 16px !important;
+  }
+  .work-card { break-inside: avoid; margin-bottom: 16px; }
+
+  /* Avoid clipping inside cards */
+  .work-card, .svc-row, .stat, .manifesto, .about-split, .svc-detail {
+    break-inside: avoid;
+  }
+
+  /* PRINT MEDIA */
+  @media print {
+    @page {
+      size: A4;
+      margin: 14mm;
+    }
+
+    html, body {
+      background: #000 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    /* Force ALL elements to keep their colors */
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    .print-page {
+      padding: 0 !important;
+    }
+
+    /* hide footer site-nav links list duplications etc — keep clean */
+    .nav, .menu, .menu__overlay, .loader, .scroll-rule,
+    [data-tweaks-panel], .tweaks-panel { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Each page mounts its own React tree -->
+<div id="page-home"     class="print-page" data-page="home"></div>
+<div id="page-about"    class="print-page" data-page="about"></div>
+<div id="page-services" class="print-page" data-page="services"></div>
+<div id="page-work"     class="print-page" data-page="work"></div>
+<div id="page-contact"  class="print-page" data-page="contact"></div>
+<div id="page-footer"   class="print-page" data-page="footer"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="scripts/i18n.js"></script>
+<script type="text/babel" src="scripts/components.jsx"></script>
+<script type="text/babel" src="scripts/pages.jsx"></script>
+
+<script type="text/babel">
+const { useState } = React;
+
+// Detect lang from URL or default to EN for print
+const params = new URLSearchParams(location.search);
+const lang = params.get('lang') === 'ar' ? 'ar' : 'en';
+document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+document.documentElement.lang = lang;
+
+// Reset hero video opacity (it will be hidden anyway)
+window.__heroOpacity = 0;
+
+// noop nav for print pages
+const noNav = () => {};
+
+const labels = {
+  home:     { en: 'I · Home',          ar: '١ · الرئيسية' },
+  about:    { en: 'II · About',        ar: '٢ · من نحن' },
+  services: { en: 'III · Services',    ar: '٣ · الخدمات' },
+  work:     { en: 'IV · Selected Work',ar: '٤ · أعمال مختارة' },
+  contact:  { en: 'V · Contact',       ar: '٥ · تواصل' },
+  footer:   { en: 'VI · Vividink',     ar: '٦ · Vividink' },
+};
+
+function PageWrap({ k, children }) {
+  return (
+    <>
+      <div className="print-divider">
+        <span>—</span>&nbsp;&nbsp;{labels[k][lang]}&nbsp;&nbsp;<span>—</span>
+      </div>
+      {children}
+    </>
+  );
+}
+
+// Mount each page into its container
+ReactDOM.createRoot(document.getElementById('page-home')).render(
+  <PageWrap k="home"><HomePage lang={lang} onNav={noNav} /></PageWrap>
+);
+ReactDOM.createRoot(document.getElementById('page-about')).render(
+  <PageWrap k="about"><AboutPage lang={lang} /></PageWrap>
+);
+ReactDOM.createRoot(document.getElementById('page-services')).render(
+  <PageWrap k="services"><ServicesPage lang={lang} onNav={noNav} /></PageWrap>
+);
+ReactDOM.createRoot(document.getElementById('page-work')).render(
+  <PageWrap k="work"><WorkPage lang={lang} onNav={noNav} /></PageWrap>
+);
+ReactDOM.createRoot(document.getElementById('page-contact')).render(
+  <PageWrap k="contact"><ContactPage lang={lang} /></PageWrap>
+);
+ReactDOM.createRoot(document.getElementById('page-footer')).render(
+  <PageWrap k="footer"><Footer lang={lang} onNav={noNav} /></PageWrap>
+);
+
+// signal ready
+window.__printReady = true;
+
+// Auto-print after fonts + render settle
+(async () => {
+  try {
+    if (document.fonts && document.fonts.ready) {
+      await document.fonts.ready;
+    }
+  } catch(e) {}
+  // Wait an extra tick for React mounts + layout
+  await new Promise(r => setTimeout(r, 800));
+  window.print();
+})();
+</script>
+
+</body>
+</html>

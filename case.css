@@ -1,0 +1,123 @@
+/* Case Study modal */
+.case {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,0.92);
+  overflow-y: auto;
+  animation: caseFade 0.4s var(--ease-cine);
+}
+@keyframes caseFade { from { opacity: 0; } to { opacity: 1; } }
+.case__shell {
+  max-width: 1240px; margin: 0 auto;
+  background: var(--vi-black, #000);
+  color: var(--vi-white, #fff);
+  border-inline: 1px solid rgba(255,255,255,0.06);
+}
+.case__close {
+  position: fixed; top: 24px; right: 24px;
+  z-index: 210;
+  background: rgba(0,0,0,0.7);
+  color: var(--vi-white, #fff);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 10px 18px;
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--font-display, serif);
+  font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+[dir="rtl"] .case__close { right: auto; left: 24px; }
+.case__close:hover { background: var(--accent, #c8102e); border-color: var(--accent, #c8102e); }
+.case__close .x { font-size: 22px; line-height: 1; }
+
+.case__hero {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+.case__hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.case__hero-overlay {
+  position: absolute; inset: auto 0 0 0;
+  padding: 48px 56px;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+}
+.case__kicker {
+  font-family: var(--font-display); font-size: 12px;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--accent, #c8102e); margin: 0 0 12px;
+}
+.case__name {
+  font-family: var(--font-display, serif);
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 400; line-height: 0.95; margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+.case__tag {
+  font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.7); margin: 0;
+}
+
+.case__intro {
+  padding: 64px 56px;
+  display: grid; grid-template-columns: 1fr 2fr; gap: 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.case__role {
+  font-family: var(--font-display); font-size: 13px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); margin: 0;
+}
+.case__lede {
+  font-family: var(--font-serif, serif); font-style: italic;
+  font-size: clamp(20px, 2vw, 28px); line-height: 1.45;
+  margin: 0; text-wrap: pretty;
+}
+.case__stats {
+  grid-column: 1 / -1;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.case__stat { display: flex; flex-direction: column; gap: 6px; }
+.case__stat-v {
+  font-family: var(--font-display, serif);
+  font-size: 48px; font-weight: 400; line-height: 1;
+  color: var(--accent, #c8102e);
+}
+.case__stat-l {
+  font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+
+.case__section {
+  padding: 56px;
+  display: grid; grid-template-columns: 3fr 2fr;
+  gap: 48px; align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.case__section:nth-child(even) .case__section-img { order: 2; }
+.case__section:nth-child(even) .case__section-txt { order: 1; }
+.case__section-img {
+  background: #0a0a0a; padding: 24px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.case__section-img img { width: 100%; height: auto; display: block; }
+.case__section-txt h3 {
+  font-family: var(--font-display, serif);
+  font-size: 32px; font-weight: 400; margin: 0 0 16px;
+  letter-spacing: -0.01em;
+}
+.case__section-txt p {
+  font-size: 16px; line-height: 1.65;
+  color: rgba(255,255,255,0.85); margin: 0; text-wrap: pretty;
+}
+
+@media (max-width: 800px) {
+  .case__hero-overlay { padding: 24px; }
+  .case__intro { padding: 32px 24px; grid-template-columns: 1fr; gap: 24px; }
+  .case__stats { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .case__stat-v { font-size: 32px; }
+  .case__section { padding: 32px 24px; grid-template-columns: 1fr; gap: 24px; }
+  .case__section:nth-child(even) .case__section-img,
+  .case__section:nth-child(even) .case__section-txt { order: 0; }
+}
