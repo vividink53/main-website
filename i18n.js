@@ -1,6 +1,6 @@
 window.I18N = {
   hero: {
-    kicker: { ar: '', en: '' }, // تم إزالة "هوية · سوشل · سينما"
+    kicker: { ar: '', en: '' }, // إزالة "هوية · سوشل · سينما"
     title: { ar: 'صُنّاع الأَثَر الخالد .', en: 'Creators of the Immortal Mark.' },
     sub: {
       ar: 'فريق إبداعي متكامل لصياغة هويات بصرية لا تُنسى . جذور كلاسيكية ، حدّة معاصرة — عقودٌ بصرية بين علامتك وجمهورها .',
@@ -38,8 +38,8 @@ window.I18N = {
     title: { ar: 'حلول بصرية وإستراتيجية متكاملة .', en: 'Complete Visual & Strategic Solutions.' },
     sub: { ar: 'نرافقك من الفكرة الأولى وحتى الإطلاق الكامل لهويتك.', en: 'From initial concept to full execution.' },
     list: [
-      { id: 'branding', title: { ar: 'الهويات البصرية الشاملة', en: 'Visual Identity & Branding' }, desc: { ar: 'صياغة الهوية البصرية من الشعار وحتى الدليل التنفيذي الكامل.', en: 'Full identity design.' }, bullets: [[{ ar: 'تصميم الشعار', en: 'Logo Design' }]] },
-      { id: 'video', title: { ar: 'الإنتاج المرئي والسينمائي', en: 'Video & Film Production' }, desc: { ar: 'إنتاج إعلانات وسرد بصري عالي الجودة باستخدام أحدث الأدوات.', en: 'Cinematic ads.' }, bullets: [[{ ar: 'إعلانات تجارية', en: 'Commercial Ads' }]] }
+      { id: 'branding', title: { ar: 'الهويات البصرية الشاملة', en: 'Visual Identity & Branding' }, desc: { ar: 'صياغة الهوية البصرية من الشعار وحتى الدليل التنفيذي الكامل.', en: 'Full identity design.' }, bullets: [{ ar: 'تصميم الشعار', en: 'Logo Design' }] },
+      { id: 'video', title: { ar: 'الإنتاج المرئي والسينمائي', en: 'Video & Film Production' }, desc: { ar: 'إنتاج إعلانات وسرد بصري عالي الجودة باستخدام أحدث الأدوات.', en: 'Cinematic ads.' }, bullets: [{ ar: 'إعلانات تجارية', en: 'Commercial Ads' }] }
     ]
   },
   work_page: {
