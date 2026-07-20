@@ -1,294 +1,185 @@
-// Vividink site translations and content dictionary.
-window.I18N = {
-  nav: {
-    home: { ar: 'الرئيسية', en: 'Home' },
-    about: { ar: 'عن الوكالة', en: 'About' },
-    services: { ar: 'الخدمات', en: 'Services' },
-    work: { ar: 'الأعمال', en: 'Work' },
-    contact: { ar: 'تواصل معنا', en: 'Contact' },
-    start: { ar: 'ابدأ مشروعاً ←', en: 'Start a project ←' }
-  },
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Vividink — Creators of the Immortal Mark.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" href="site.css?v=3"/>
+<link rel="stylesheet" href="case.css?v=1"/>
+<link rel="icon" href="assets/v-mark.png"/>
+</head>
+<body>
+<div id="root" data-screen-label="Vividink Site"></div>
 
-  hero: {
-    kicker: { ar: 'هوية · سوشل · سِينِما', en: 'IDENTITY · SOCIAL · CINEMA' },
-    title: { ar: 'صُنّاع الأَثَر الخالد .', en: 'Creators of the Immortal Mark.' },
-    sub: {
-      ar: 'فريق إبداعي متكامل لصياغة هويات بصرية لا تُنسى . جذور كلاسيكية ، حدّة معاصرة — عقودٌ بصرية بين علامتك وجمهورها .',
-      en: 'A full-service creative engine crafting unforgettable visual identities. Classical roots, contemporary edge — visual covenants between your brand and its audience.'
-    },
-    ctaWork: { ar: 'شاهد الأعمال', en: 'View Work' },
-    ctaTalk: { ar: 'ابدأ مشروعاً ←', en: 'Start a Project ←' },
-    immortalMark: { ar: 'صناع الأثر الخالد .', en: 'Creators of the Immortal Mark.' }
-  },
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
-  metrics: [
-    { num: '100%', label: { ar: 'التزام بصري وتأصيلي', en: 'Visual & conceptual rigor' } },
-    { num: '360°', label: { ar: 'إنتاج إستراتيجي وسينمائي', en: 'Full-spectrum production' } },
-    { num: '01',   label: { ar: 'معيارٌ واحد — الخلود', en: 'Single standard — Immortality' } }
-  ],
+<!-- Fixed File Paths for Root Directory -->
+<script src="i18n.js"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="components.jsx"></script>
+<script type="text/babel" src="pages.jsx"></script>
 
-  manifesto: {
-    big: {
-      ar: 'العلامة العادية تُقرأ . العلامة الخالدة تُنقش في الذاكرة .',
-      en: 'An ordinary mark is read. An immortal mark is etched in memory.'
-    },
-    sub: {
-      ar: 'نحن لا نبيع هوياتٍ بصريةً مجردة ، بل نهندس حضوراً مهيباً يستحق البقاء .',
-      en: 'We do not sell design assets. We engineer a commanding presence worthy of enduring.'
-    }
-  },
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
 
-  services_section: {
-    eyebrow: { ar: 'الخدمات', en: 'SERVICES' },
-    title: {
-      ar: 'منظومة إبداعية متكاملة لصياغة الحضور .',
-      en: 'An End-to-End Creative Engine for Brand Presence.'
-    },
-    num: '01'
-  },
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "lang": "ar",
+  "redIntensity": 100,
+  "heroVideoOpacity": 78,
+  "headingScale": 100,
+  "showLoader": true,
+  "menuStyle": "overlay"
+}/*EDITMODE-END*/;
 
-  services: [
-    {
-      id: 'branding',
-      num: '01',
-      title: { ar: 'الهويات البصرية الشاملة', en: 'Visual Identity & Branding' },
-      desc: {
-        ar: 'صياغة العهد البصري الأول : من الشعار والمفهوم إلى الأدلة التنفيذية وأنظمة الطباعة الكلاسيكية .',
-        en: 'Drafting the foundational covenant: from mark & concept to brand guidelines and print systems.'
-      },
-      tags: ['Brand Mark', 'Identity System', 'Guidelines', 'Print Culture']
-    },
-    {
-      id: 'video',
-      num: '02',
-      title: { ar: 'الإنتاج المرئي والسينمائي', en: 'Video & Film Production' },
-      desc: {
-        ar: 'سرد سينمائي رفيع المستوى لبراندات الفخامة والمنتجات ، مدعوم بتقنيات الذكاء الاصطناعي التوليدي والخدع البصرية .',
-        en: 'High-end cinematic storytelling for luxury brands, backed by generative AI and visual mastery.'
-      },
-      tags: ['Cinematic Ads', 'AI Video Generation', '3D / VFX', 'Brand Films']
-    },
-    {
-      id: 'social',
-      num: '03',
-      title: { ar: 'إدارة السوشل ميديا والاستراتيجية', en: 'Social Media & Content Strategy' },
-      desc: {
-        ar: 'تخطيط وتنفيذ حملات تسويقية عابرة للحدود ، تستهدف السوق الخليجي بلهجة محلية واستهداف نخبوي .',
-        en: 'Strategic content matrices and cross-border campaigns tailored for regional resonance.'
-      },
-      tags: ['Content Matrix', 'Gulf Targeting', 'Local Copywriting', 'Campaign Audits']
-    }
-  ],
-
-  work_section: {
-    eyebrow: { ar: 'الأعمال', en: 'SELECTED WORK' },
-    title: {
-      ar: 'علامات صُنعت لتخلد .',
-      en: 'Marks Crafted to Endure.'
-    },
-    num: '02'
-  },
-
-  portfolio: [
-    {
-      id: 'anzu',
-      title: { ar: 'أنزو — Anzu', en: 'Anzu' },
-      cat: { ar: 'هوية بصرية · أزياء f/w', en: 'Visual Identity · F/W Campaign' },
-      img: 'portfolio-cover.png',
-      scope: { ar: 'شعار ، دليل بصرية ، إنتاج سينمائي', en: 'Mark, Identity Guide, Cinema' },
-      year: '2026'
-    },
-    {
-      id: 'nasma',
-      title: { ar: 'نسمة — Nasma', en: 'Nasma' },
-      cat: { ar: 'حملات بصرية · محتوى واقعي', en: 'Visual Campaign · Real Shoots' },
-      img: 'portfolio-chess.png',
-      scope: { ar: 'استراتيجية محتوى ، تصوير فوتوغرافي', en: 'Content Strategy, Photography' },
-      year: '2026'
-    },
-    {
-      id: 'exhibition',
-      title: { ar: 'المعرض المعماري', en: 'Architectural Exhibition' },
-      cat: { ar: 'تصميم مساحي · بوسترات', en: 'Spatial Design · Posters' },
-      img: 'portfolio-exhibition.png',
-      scope: { ar: 'بوسترات باروكية ، تصميم زوايا', en: 'Baroque Posters, Space Layout' },
-      year: '2025'
-    },
-    {
-      id: 'fabric',
-      title: { ar: 'جوهر النسيج', en: 'Fabric Essence' },
-      cat: { ar: 'إنتاج إعلاني · AI Video', en: 'Commercial Production · AI' },
-      img: 'portfolio-fabric-essence.png',
-      scope: { ar: 'إعلان توليدي ، Veo / Kling Workflow', en: 'Generative Commercial, AI Workflow' },
-      year: '2025'
-    }
-  ],
-
-  founder_quote: {
-    quote: {
-      ar: '« لا نصمم لكي نساير الموضة السائدة ، بل لنفرض حقيقة حصرية تجعل العلامة عصية على النسيان . »',
-      en: '“We do not design to follow transient trends; we construct a visual truth that makes the brand unforgettable.”'
-    },
-    author: { ar: 'كميت زروند', en: 'Komaet Zarawnd' },
-    role: { ar: 'المشرف العام والشريك المؤسس — Vividink', en: 'General Supervisor & Co-founder — Vividink' }
-  },
-
-  cta_strip: {
-    title: {
-      ar: 'جاهز لبناء علامة لا تُمحى ؟',
-      en: 'Ready to build a mark that never fades?'
-    },
-    sub: {
-      ar: 'استبيان العميل هو الخطوة الأولى لتحديد أهدافك بدقة وبناء استراتيجية لا حيدة عنها .',
-      en: 'The Client Brief is our first step toward engineering your brand presence.'
-    },
-    btn: { ar: 'تعبئة استبيان العميل (Brief) ←', en: 'Fill Out Client Brief ←' }
-  },
-
-  about_page: {
-    kicker: { ar: 'عن الوكالة', en: 'ABOUT VIVIDINK' },
-    title: { ar: 'فلسفتنا في الخلود .', en: 'Our Philosophy of Immortality.' },
-    sub: {
-      ar: 'تأسست Vividink لتكون بديلاً عقلانياً وهندسياً للسطحية الإعلانية السائدة .',
-      en: 'Vividink was founded as a disciplined, geometric antidote to superficial marketing.'
-    },
-    manifestoTitle: { ar: 'العهد البصري', en: 'THE VISUAL COVENANT' },
-    manifestoLead: {
-      ar: 'نجمع بين الهندسة الميكاترونيكية الدقيقة ، الجماليات البصرية الكلاسيكية ، والسرد القصصي السينمائي .',
-      en: 'We bridge mechatronic geometric precision, classical aesthetics, and cinematic storytelling.'
-    },
-    manifestoP1: {
-      ar: 'كل علامة نخرجها تمر بعشرات الساعات من التفكيك المفاهيمي والدراسة التنافسية قبل رسم الخط الأول .',
-      en: 'Every mark undergoes rigorous conceptual deconstruction and competitive analysis before the first vector is drawn.'
-    },
-    manifestoP2: {
-      ar: 'نؤمن أن المحتوى الحقيقي هو المحتوى الواقعي والإستراتيجي الموجه بعناية نحو الجمهور الاستثماري الصحيح .',
-      en: 'We believe genuine impact relies on authentic, highly strategic content targeted precisely at value-driven audiences.'
-    },
-    pillars: [
-      {
-        title: { ar: 'الدقة الهندسية', en: 'Geometric Precision' },
-        desc: { ar: 'نسب ذهبية وأبعاد متوازنة تمنح الشعار هيبة فورية .', en: 'Golden ratios and architectural balance delivering immediate gravity.' }
-      },
-      {
-        title: { ar: 'العمق المفاهيمي', en: 'Conceptual Depth' },
-        desc: { ar: 'لا وجود لعنصر عشوائي ؛ كل لون وزاوية تحمل معنى استراتيجياً .', en: 'No arbitrary aesthetics; every stroke and shade bears strategic intent.' }
-      },
-      {
-        title: { ar: 'التوليد السينمائي', en: 'Cinematic AI Generation' },
-        desc: { ar: 'دمج Veo و Kling لبناء مشاهد إعلانية تحاكي أضخم الإنتاجات العالمية .', en: 'Mastery of Veo and Kling workflows to engineer world-class commercial visuals.' }
-      }
-    ]
-  },
-
-  services_page: {
-    kicker: { ar: 'خدماتنا التفصيلية', en: 'DETAILED SERVICES' },
-    title: { ar: 'منظومة الخدمات الاستراتيجية .', en: 'Strategic Service Matrix.' },
-    sub: {
-      ar: 'خدمات مصممة للشركات والمؤسسات التي تبحث عن الفخامة والأثر المستدام .',
-      en: 'Tailored for corporate accounts and luxury brands seeking lasting market distinction.'
-    },
-    list: [
-      {
-        id: 'branding',
-        title: { ar: 'صناعة الهويات البصرية والهندسية', en: 'Brand Identity Construction' },
-        desc: {
-          ar: 'بناء الهوية البصرية من الصفر : المفهوم ، الشعار ، الألوان السايكولوجية ، الخطوط المخصصة ، والكتالوجات التنفيذية .',
-          en: 'End-to-end visual identity crafting: core mark, color psychology, typography, and brand books.'
-        },
-        bullets: [
-          { ar: 'تصميم الشعارات والمجسمات الهندسيّة', en: 'Geometric Mark & Logotype Engineering' },
-          { ar: 'كتيب دليل الهوية المكتمل (Brand Book)', en: 'Comprehensive Brand Book & Guidelines' },
-          { ar: 'تطبيقات المطبوعات والتغليف الفاخر', en: 'Luxury Print Culture & Packaging Applications' }
-        ]
-      },
-      {
-        id: 'video',
-        title: { ar: 'الإنتاج الإعلاني والـ AI Video', en: 'Commercial Film & AI Video' },
-        desc: {
-          ar: 'هندسة محتوى فيديو سينمائي باستخدام أحدث الأدوات التوليدية والتصوير الميداني الواقعي .',
-          en: 'Cinematic video engineering combining AI generation workflows with real-world production.'
-        },
-        bullets: [
-          { ar: 'إعلانات سينمائية لبراندات الأثاث والفخامة', en: 'Cinematic Ads for Furniture & Luxury Brands' },
-          { ar: 'سلسلة السرد التاريخي بزماناتو (Bezmanato)', en: 'Bezmanato Historical Storytelling Series' },
-          { ar: 'مؤثرات بصرية وتركيب سينمائي (VFX)', en: 'Visual Effects & High-End Post-Production' }
-        ]
-      },
-      {
-        id: 'campaigns',
-        title: { ar: 'إدارة الحملات والتسويق الخليجي', en: 'Cross-Border Campaigns & Marketing' },
-        desc: {
-          ar: 'تخطيط الحملات الإعلانية الممولة واستهداف المحافظات والأسواق الإقليمية (السعودية ، الإمارات ، قطر) .',
-          en: 'Targeted ad campaign deployment across regional markets with localized dialects.'
-        },
-        bullets: [
-          { ar: 'صياغة الإعلانات الممولة والاستهداف النخبوي', en: 'Paid Ad Optimization & Elite Targeting' },
-          { ar: 'إعادة الهيكلة والتنسيق الدوري للمبيعات', en: 'Performance Audits & Monthly Meetings' },
-          { ar: 'كتابة الإعلانات باللهجات المحلية (Copywriting)', en: 'Localized Dialect Copywriting & Strategy' }
-        ]
-      }
-    ]
-  },
-
-  work_page: {
-    kicker: { ar: 'معرض الأعمال', en: 'PORTFOLIO' },
-    title: { ar: 'مشاريعٌ تشهد على الأثر .', en: 'Projects Witnessing Immortality.' },
-    sub: {
-      ar: 'تصفح عينات من أعمالنا في الهويات البصرية ، الحملات التسويقية ، والإنتاج المرئي .',
-      en: 'Explore our curated campaigns, identity systems, and visual productions.'
-    }
-  },
-
-  contact_page: {
-    kicker: { ar: 'تواصل معنا', en: 'CONTACT' },
-    title: { ar: 'ابدأ بصناعة أثرك الخالد .', en: 'Begin Crafting Your Mark.' },
-    sub: {
-      ar: 'يمكنك التواصل المباشر مع فريق الوكالة أو الانتقال فوراً لتعبئة استبيان المشروع .',
-      en: 'Reach our team directly or complete our client onboarding brief.'
-    },
-    labels: {
-      direct: { ar: 'المراسلة المباشرة', en: 'Direct Communication' },
-      studio: { ar: 'المقر والإشراف', en: 'Supervision & Base' },
-      location: { ar: 'اللاذقية · دمشق · إدارة الحملات الإقليمية', en: 'Latakia · Damascus · Regional Campaigns' },
-      social: { ar: 'منصات الوكالة', en: 'Agency Channels' }
-    },
-    form: {
-      name: { ar: 'الاسم الكامل', en: 'Full Name' },
-      company: { ar: 'اسم الشركة / البراند', en: 'Company / Brand Name' },
-      email: { ar: 'البريد الإلكتروني', en: 'Email Address' },
-      phone: { ar: 'رقم الهاتف / الواتساب', en: 'Phone / WhatsApp' },
-      scope: { ar: 'نطاق المشروع المطلوب', en: 'Project Scope' },
-      budget: { ar: 'الميزانية التقديرية', en: 'Estimated Budget' },
-      brief: { ar: 'نبذة مختصرة عن المشروع', en: 'Brief Overview' },
-      submit: { ar: 'إرسال الطلب ←', en: 'Submit Inquiry ←' }
-    },
-    scopes: [
-      { ar: 'صناعة هوية بصرية متكاملة', en: 'Full Brand Identity' },
-      { ar: 'إنتاج إعلاني سينمائي (AI / Shoot)', en: 'Commercial Video Production' },
-      { ar: 'إدارة حملات تسويقية وتصوير واقعي', en: 'Marketing Campaigns & Shoots' },
-      { ar: 'استشارة وإشراف إستراتيجي', en: 'Strategic Consultation' }
-    ],
-    budgets: ['$1,500 – $3,000', '$3,000 – $7,000', '$7,000+'],
-    success: {
-      title: { ar: 'تم استلام طلبك بنجاح !', en: 'Inquiry Received Successfully!' },
-      sub: { ar: 'سيتواصل معك فريقنا خلال 24 ساعة لترتيب اجتماع الاستراتيجية .', en: 'Our team will reach out within 24 hours to schedule a consultation.' }
-    }
-  }
+const detectLang = () => {
+  if (typeof navigator === 'undefined') return 'en';
+  const l = (navigator.language || 'en').toLowerCase();
+  return l.startsWith('ar') ? 'ar' : 'en';
 };
 
-function T(key, lang = 'ar') {
-  const parts = key.split('.');
-  let curr = window.I18N;
-  for (const p of parts) {
-    if (curr && curr[p] !== undefined) {
-      curr = curr[p];
-    } else {
-      return key;
-    }
-  }
-  if (typeof curr === 'object' && curr !== null) {
-    return curr[lang] || curr['ar'] || key;
-  }
-  return curr || key;
+function App() {
+  const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const [scene, setScene] = useState('home');
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [navScrolled, setNavScrolled] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const [firstVisit, setFirstVisit] = useState(true);
+
+  // language: tweaks override, else auto-detect
+  const lang = tweaks.lang === 'auto' ? detectLang() : tweaks.lang;
+
+  // Apply lang/dir to body
+  useEffect(() => {
+    document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = lang;
+  }, [lang]);
+
+  // Apply red intensity tint via CSS var
+  useEffect(() => {
+    const k = tweaks.redIntensity / 100;
+    const r = Math.round(255 * k);
+    document.documentElement.style.setProperty('--vi-red', `rgb(${r}, 0, 0)`);
+    document.documentElement.style.setProperty('--accent', `rgb(${r}, 0, 0)`);
+  }, [tweaks.redIntensity]);
+
+  // Apply heading scale
+  useEffect(() => {
+    document.documentElement.style.setProperty('--heading-scale', tweaks.headingScale / 100);
+  }, [tweaks.headingScale]);
+
+  // Loader (first visit only)
+  useEffect(() => {
+    if (!tweaks.showLoader) { setLoaded(true); setFirstVisit(false); return; }
+    const t = setTimeout(() => { setLoaded(true); setFirstVisit(false); }, 1700);
+    return () => clearTimeout(t);
+  }, []);
+
+  // Scroll → nav style
+  useEffect(() => {
+    const onScroll = () => setNavScrolled(window.scrollY > 30);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Page change → reset scroll
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, [scene]);
+
+  const onNav = (key) => { setScene(key); setMenuOpen(false); };
+
+  // Stash hero opacity for components.jsx to read
+  window.__heroOpacity = tweaks.heroVideoOpacity / 100;
+
+  return (
+    <>
+      {firstVisit && <Loader done={loaded} lang={lang} />}
+      <ScrollRule />
+      <Nav onMenu={() => setMenuOpen(true)} onNav={onNav} lang={lang} setLang={(l) => setTweak('lang', l)} scrolled={navScrolled} />
+      <MenuOverlay open={menuOpen} onClose={() => setMenuOpen(false)} onNav={onNav} lang={lang} />
+
+      {scene === 'home'     && <HomePage lang={lang} onNav={onNav} />}
+      {scene === 'about'    && <AboutPage lang={lang} />}
+      {scene === 'services' && <ServicesPage lang={lang} onNav={onNav} />}
+      {scene === 'work'     && <WorkPage lang={lang} onNav={onNav} />}
+      {scene === 'contact'  && <ContactPage lang={lang} />}
+
+      <Footer lang={lang} onNav={onNav} />
+
+      <TweaksPanel title={lang === 'ar' ? 'لوحة التعديلات' : 'Tweaks'}>
+        <TweakSection title={lang === 'ar' ? 'اللغة' : 'Language'}>
+          <TweakRadio
+            label={lang === 'ar' ? 'لغة الواجهة' : 'Interface'}
+            value={tweaks.lang}
+            onChange={v => setTweak('lang', v)}
+            options={[
+              { value: 'auto', label: lang === 'ar' ? 'تلقائي' : 'Auto' },
+              { value: 'en',   label: 'EN' },
+              { value: 'ar',   label: 'ع' },
+            ]}
+          />
+        </TweakSection>
+
+        <TweakSection title={lang === 'ar' ? 'الفيديو' : 'Hero Video'}>
+          <TweakSlider
+            label={lang === 'ar' ? 'شفافية الفيديو' : 'Opacity'}
+            value={tweaks.heroVideoOpacity}
+            onChange={v => setTweak('heroVideoOpacity', v)}
+            min={20} max={100} step={2}
+            unit="%"
+          />
+        </TweakSection>
+
+        <TweakSection title={lang === 'ar' ? 'الهوية' : 'Brand'}>
+          <TweakSlider
+            label={lang === 'ar' ? 'شدّة الأحمر' : 'Red intensity'}
+            value={tweaks.redIntensity}
+            onChange={v => setTweak('redIntensity', v)}
+            min={50} max={100} step={2}
+            unit="%"
+          />
+          <TweakSlider
+            label={lang === 'ar' ? 'حجم العناوين' : 'Heading scale'}
+            value={tweaks.headingScale}
+            onChange={v => setTweak('headingScale', v)}
+            min={75} max={120} step={5}
+            unit="%"
+          />
+        </TweakSection>
+
+        <TweakSection title={lang === 'ar' ? 'سلوك' : 'Behavior'}>
+          <TweakToggle
+            label={lang === 'ar' ? 'شاشة التحميل عند البدء' : 'Show loader on start'}
+            value={tweaks.showLoader}
+            onChange={v => setTweak('showLoader', v)}
+          />
+        </TweakSection>
+
+        <TweakSection title={lang === 'ar' ? 'الانتقال السريع' : 'Quick nav'}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+            <TweakButton onClick={() => onNav('home')}>{T('nav.home', lang)}</TweakButton>
+            <TweakButton onClick={() => onNav('about')}>{T('nav.about', lang)}</TweakButton>
+            <TweakButton onClick={() => onNav('services')}>{T('nav.services', lang)}</TweakButton>
+            <TweakButton onClick={() => onNav('work')}>{T('nav.work', lang)}</TweakButton>
+            <TweakButton onClick={() => onNav('contact')}>{T('nav.contact', lang)}</TweakButton>
+          </div>
+        </TweakSection>
+      </TweaksPanel>
+    </>
+  );
 }
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+
+<style>
+  /* heading scale */
+  .hero__display, .page-hero__title, .sec-head__title, .svc__ttl, .svc-detail__title, .about-split__txt h3, .manifesto__big {
+    font-size: calc(var(--__base-fs, 1em) * var(--heading-scale, 1));
+  }
+</style>
+</body>
+</html>
