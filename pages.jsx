@@ -162,64 +162,35 @@ const WorkPage = ({ lang, onNav }) => {
 
 // ============ CONTACT =============================================
 const ContactPage = ({ lang }) => {
-  const titleHTML = lang === 'ar' ? window.I18N.contact.title_ar : window.I18N.contact.title_en;
-  const f = window.I18N.contact.form;
-  const d = window.I18N.contact.direct;
   return (
-    <div className="scene">
-      <header className="page-hero" data-screen-label="Contact">
-        <p className="page-hero__eye">
-          <span className="ln"></span>
-          <span>{T('contact.eyebrow', lang)}</span>
-        </p>
-        <h1 className="page-hero__title" dangerouslySetInnerHTML={{ __html: titleHTML }}></h1>
-        <p className="page-hero__lede">{T('contact.lede', lang)}</p>
-      </header>
+    <main className="page-contact" style={{ padding: '120px 20px 80px', textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
+      <h1 className="sec-head__title" style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '20px' }}>
+        دعنا نصنع أثراً يخلد.
+      </h1>
+      <p style={{ opacity: 0.8, fontSize: '1.2rem', marginBottom: '40px' }}>
+        نحن جاهزون لبدء مشروعك القادم وصناعة أثر لا يُنسى لعلامتك التجارية.
+      </p>
 
-      <section className="contact-block">
-        <div className="contact-block__form">
-          <div className="field">
-            <label>{lang === 'ar' ? f.name.ar : f.name.en}</label>
-            <input placeholder="—" />
-          </div>
-          <div className="field">
-            <label>{lang === 'ar' ? f.brand.ar : f.brand.en}</label>
-            <input placeholder="—" />
-          </div>
-          <div className="field">
-            <label>{lang === 'ar' ? f.type.ar : f.type.en}</label>
-            <input placeholder={lang === 'ar' ? f.typeP.ar : f.typeP.en} />
-          </div>
-          <div className="field">
-            <label>{lang === 'ar' ? f.frame.ar : f.frame.en}</label>
-            <textarea rows="3" placeholder={lang === 'ar' ? f.frameP.ar : f.frameP.en}></textarea>
-          </div>
-          <button className="btn btn--primary contact-block__send">{lang === 'ar' ? f.send.ar : f.send.en}</button>
+      <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', padding: '40px', borderRadius: '24px', marginBottom: '40px' }}>
+        <div style={{ marginBottom: '25px' }}>
+          <div style={{ opacity: 0.5, fontSize: '0.9rem', marginBottom: '5px' }}>البريد الإلكتروني</div>
+          <a href="mailto:info@vividinkmedia.com" style={{ fontSize: '1.4rem', color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>
+            info@vividinkmedia.com
+          </a>
         </div>
 
-        <aside className="contact-block__aside">
-          <h4>{lang === 'ar' ? d.eyebrow.ar : d.eyebrow.en}</h4>
-          <a className="contact-line-big" href="tel:+963991636710">
-            <span className="lbl">{lang === 'ar' ? d.phone_lbl.ar : d.phone_lbl.en}</span>
-            +963 991 636 710
+        <div style={{ marginBottom: '35px' }}>
+          <div style={{ opacity: 0.5, fontSize: '0.9rem', marginBottom: '5px' }}>التواصل عبر الواتساب</div>
+          <a href="https://wa.me/963946976617" target="_blank" style={{ fontSize: '1.4rem', color: '#25D366', textDecoration: 'none', fontWeight: 'bold' }}>
+            0946976617
           </a>
-          <a className="contact-line-big" href="mailto:vividink53@gmail.com">
-            <span className="lbl">{lang === 'ar' ? d.email_lbl.ar : d.email_lbl.en}</span>
-            vividink53@gmail.com
-          </a>
-          <a className="contact-line-big" href="https://www.instagram.com/vividink53" target="_blank" rel="noopener">
-            <span className="lbl">{lang === 'ar' ? d.ig_lbl.ar : d.ig_lbl.en}</span>
-            @vividink53
-          </a>
-          <div className="contact-line-big" style={{ cursor: 'default' }}>
-            <span className="lbl">{lang === 'ar' ? d.hours_lbl.ar : d.hours_lbl.en}</span>
-            <span style={{ fontSize: '0.55em', fontFamily: 'var(--font-sans)', fontWeight: 300, letterSpacing: '0.04em' }}>
-              {lang === 'ar' ? d.hours.ar : d.hours.en}
-            </span>
-          </div>
-        </aside>
-      </section>
-    </div>
+        </div>
+
+        <a href="http://survey.vividinkmedia.com" className="btn btn--primary" style={{ display: 'inline-block', padding: '18px 36px', fontSize: '1.2rem', textDecoration: 'none' }}>
+          الانتقال إلى استبيان العميل (Client Brief) ←
+        </a>
+      </div>
+    </main>
   );
 };
 
