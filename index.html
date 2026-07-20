@@ -9,7 +9,6 @@
 <link rel="icon" href="assets/v-mark.png"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js" crossorigin></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js" crossorigin></script>
-<script src="scripts/i18n.js"></script>
 </head>
 <body>
 <div id="root" data-screen-label="Vividink Site"></div>
@@ -18,24 +17,56 @@
 const e = React.createElement;
 const { useState, useEffect } = React;
 
-// Original Loader Component
+// --- Built-in Translations Dictionary (i18n) ---
+const I18N = {
+  ar: {
+    'hero.immortalMark': 'صناع الأثر الخالد.',
+    'hero.title': 'نحن نصنع العلامات التي لا تُمحى.',
+    'hero.sub': 'وكالة إستراتيجية وتسويقية متكاملة تصنع هويات بصرية وإنتاج مرئي سينمائي يعزز حضور العلامات التجارية.',
+    'hero.ctaWork': 'استكشف أعمالنا',
+    'hero.ctaTalk': 'ابدأ مشروعك',
+    'nav.home': 'الرئيسية',
+    'nav.about': 'عن الوكالة',
+    'nav.services': 'خدماتنا',
+    'nav.work': 'أعمالنا',
+    'nav.contact': 'تواصل معنا'
+  },
+  en: {
+    'hero.immortalMark': 'Creators of the Immortal Mark.',
+    'hero.title': 'We create marks that never fade.',
+    'hero.sub': 'A strategic media agency crafting powerful visual identities and cinematic brand stories.',
+    'hero.ctaWork': 'Explore Work',
+    'hero.ctaTalk': 'Start Project',
+    'nav.home': 'Home',
+    'nav.about': 'About',
+    'nav.services': 'Services',
+    'nav.work': 'Work',
+    'nav.contact': 'Contact'
+  }
+};
+
+function T(key, lang = 'ar') {
+  return (I18N[lang] && I18N[lang][key]) || (I18N['ar'] && I18N['ar'][key]) || key;
+}
+
+// --- Original Loader Component ---
 function Loader({ done, lang }) {
   return e('div', { className: `loader ${done ? 'loader--done' : ''}` },
     e('div', { className: 'loader__inner' },
       e('div', { className: 'loader__mark' },
-        e('img', { src: 'assets/v-mark.png', alt: 'Vividink' })
+        e('img', { src: 'assets/v-mark.png', alt: 'Vividink', onError: (ev) => ev.target.style.display='none' })
       ),
       e('div', { className: 'loader__txt' }, T('hero.immortalMark', lang))
     )
   );
 }
 
-// Original Nav Component
+// --- Original Nav Component ---
 function Nav({ onMenu, onNav, lang, setLang, scrolled }) {
   return e('header', { className: `nav ${scrolled ? 'nav--scrolled' : ''}` },
     e('div', { className: 'nav__inner' },
       e('a', { className: 'nav__brand', onClick: () => onNav('home'), style: { cursor: 'pointer' } },
-        e('img', { src: 'assets/v-mark.png', alt: 'Vividink', className: 'nav__logo' }),
+        e('img', { src: 'assets/v-mark.png', alt: 'Vividink', className: 'nav__logo', onError: (ev) => ev.target.style.display='none' }),
         e('span', { className: 'nav__name' }, 'Vividink')
       ),
       e('div', { className: 'nav__actions' },
@@ -50,26 +81,26 @@ function Nav({ onMenu, onNav, lang, setLang, scrolled }) {
   );
 }
 
-// Original Overlay Menu
+// --- Original Menu Overlay ---
 function MenuOverlay({ open, onClose, onNav, lang }) {
   if (!open) return null;
   return e('div', { className: 'menu-overlay' },
     e('button', { className: 'menu-overlay__close', onClick: onClose }, '✕'),
     e('nav', { className: 'menu-overlay__nav' },
-      e('a', { onClick: () => onNav('home') }, T('nav.home', lang)),
-      e('a', { onClick: () => onNav('about') }, T('nav.about', lang)),
-      e('a', { onClick: () => onNav('services') }, T('nav.services', lang)),
-      e('a', { onClick: () => onNav('work') }, T('nav.work', lang)),
-      e('a', { onClick: () => onNav('contact') }, T('nav.contact', lang))
+      e('a', { onClick: () => onNav('home'), style: { cursor: 'pointer' } }, T('nav.home', lang)),
+      e('a', { onClick: () => onNav('about'), style: { cursor: 'pointer' } }, T('nav.about', lang)),
+      e('a', { onClick: () => onNav('services'), style: { cursor: 'pointer' } }, T('nav.services', lang)),
+      e('a', { onClick: () => onNav('work'), style: { cursor: 'pointer' } }, T('nav.work', lang)),
+      e('a', { onClick: () => onNav('contact'), style: { cursor: 'pointer' } }, T('nav.contact', lang))
     )
   );
 }
 
-// Original Home Page with Video & Red Aesthetic
+// --- Original Hero Section With Ink Hand Video ---
 function HomePage({ lang, onNav }) {
   return e('main', { className: 'page-home' },
     e('section', { className: 'hero' },
-      e('div', { className: 'hero__video-wrap', style: { opacity: window.__heroOpacity || 0.78 } },
+      e('div', { className: 'hero__video-wrap', style: { opacity: 0.78 } },
         e('video', {
           className: 'hero__video',
           src: 'assets/hand-ink.mp4',
@@ -84,14 +115,23 @@ function HomePage({ lang, onNav }) {
         e('p', { className: 'hero__sub' }, T('hero.sub', lang)),
         e('div', { className: 'hero__btns' },
           e('button', { className: 'btn btn--primary', onClick: () => onNav('work') }, T('hero.ctaWork', lang)),
-          e('button', { className: 'btn btn--ghost', onClick: () => onNav('contact') }, T('hero.ctaTalk', lang))
+          e('a', { className: 'btn btn--ghost', href: 'http://survey.vividinkmedia.com' }, T('hero.ctaTalk', lang))
         )
       )
     )
   );
 }
 
-// Main Application Component
+// --- Footer Component ---
+function Footer({ lang }) {
+  return e('footer', { className: 'footer', style: { padding: '40px 20px', textAlignment: 'center', borderTop: '1px solid rgba(255,255,255,0.1)' } },
+    e('div', { style: { textAlign: 'center', opacity: 0.6, fontSize: '0.9rem' } },
+      '© 2026 Vividink. All rights reserved.'
+    )
+  );
+}
+
+// --- Main App Root ---
 function App() {
   const [scene, setScene] = useState('home');
   const [menuOpen, setMenuOpen] = useState(false);
@@ -112,7 +152,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const t = setTimeout(() => { setLoaded(true); setFirstVisit(false); }, 1500);
+    const t = setTimeout(() => { setLoaded(true); setFirstVisit(false); }, 1600);
     return () => clearTimeout(t);
   }, []);
 
@@ -123,13 +163,13 @@ function App() {
   }, []);
 
   const onNav = (key) => { setScene(key); setMenuOpen(false); };
-  window.__heroOpacity = 0.78;
 
   return e(React.Fragment, null,
     firstVisit && e(Loader, { done: loaded, lang: lang }),
     e(Nav, { onMenu: () => setMenuOpen(true), onNav: onNav, lang: lang, setLang: setLang, scrolled: navScrolled }),
     e(MenuOverlay, { open: menuOpen, onClose: () => setMenuOpen(false), onNav: onNav, lang: lang }),
-    scene === 'home' && e(HomePage, { lang: lang, onNav: onNav })
+    scene === 'home' && e(HomePage, { lang: lang, onNav: onNav }),
+    e(Footer, { lang: lang })
   );
 }
 
