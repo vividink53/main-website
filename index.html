@@ -11,14 +11,17 @@
 <link rel="icon" href="assets/v-mark.png"/>
 
 <script>
-  // Automatic Media Fallback Script to fix missing images/videos
+  // Automatic Media Fallback Script for Portfolio & Assets (Anzu, Nasma, etc.)
   document.addEventListener('error', function (e) {
     if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO') {
-      const src = e.target.getAttribute('src');
-      if (src && !src.startsWith('assets/') && !src.startsWith('http')) {
-        e.target.src = 'assets/' + src;
-      } else if (src && src.startsWith('assets/')) {
-        e.target.src = src.replace('assets/', '');
+      let src = e.target.getAttribute('src');
+      if (src) {
+        if (!src.startsWith('assets/') && !src.startsWith('http')) {
+          e.target.src = 'assets/' + src;
+        } else if (src.startsWith('assets/anzu/')) {
+          // If path issue with anzu subfolder
+          e.target.src = src.replace('assets/anzu/', 'assets/');
+        }
       }
     }
   }, true);
@@ -71,6 +74,7 @@ function App() {
     document.documentElement.lang = lang;
   }, [lang]);
 
+  // Apply red intensity tint via CSS var
   useEffect(() => {
     const k = tweaks.redIntensity / 100;
     const r = Math.round(255 * k);
@@ -99,7 +103,29 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, [scene]);
 
-  const onNav = (key) => { setScene(key); setMenuOpen(false); };
+  // Hide the "هوية · سوشل · سينما" tag on load
+  useEffect(() => {
+    const removeTag = () => {
+      const tags = document.querySelectorAll('.hero__tag, .hero__kicker, .hero__eyebrow');
+      tags.forEach(el => {
+        if (el.textContent.includes('هوية') || el.textContent.includes('سوشل') || el.textContent.includes('سينما')) {
+          el.style.display = 'none';
+        }
+      });
+    };
+    removeTag();
+    const timer = setTimeout(removeTag, 500);
+    return () => clearTimeout(timer);
+  }, [scene]);
+
+  const onNav = (key) => { 
+    if (key === 'survey' || key === 'contact') {
+      window.location.href = 'http://survey.vividinkmedia.com';
+      return;
+    }
+    setScene(key); 
+    setMenuOpen(false); 
+  };
 
   window.__heroOpacity = tweaks.heroVideoOpacity / 100;
 
@@ -114,7 +140,36 @@ function App() {
       {scene === 'about'    && <AboutPage lang={lang} />}
       {scene === 'services' && <ServicesPage lang={lang} onNav={onNav} />}
       {scene === 'work'     && <WorkPage lang={lang} onNav={onNav} />}
-      {scene === 'contact'  && <ContactPage lang={lang} />}
+
+      {/* Custom Contact Section Redirecting to Survey + New Contact Info */}
+      {scene === 'contact'  && (
+        <main class="page-contact" style={{ padding: '120px 20px 80px', textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
+          <h1 style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '20px' }}>تواصل معنا</h1>
+          <p style={{ opacity: 0.8, fontSize: '1.2rem', marginBottom: '40px' }}>
+            نحن جاهزون لبدء مشروعك القادم وصناعة أثر لا يُنسى لعلامتك التجارية.
+          </p>
+
+          <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', padding: '40px', borderRadius: '24px', marginBottom: '40px' }}>
+            <div style={{ marginBottom: '25px' }}>
+              <div style={{ opacity: 0.5, fontSize: '0.9rem', marginBottom: '5px' }}>البريد الإلكتروني</div>
+              <a href="mailto:info@vividinkmedia.com" style={{ fontSize: '1.4rem', color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>
+                info@vividinkmedia.com
+              </a>
+            </div>
+
+            <div style={{ marginBottom: '35px' }}>
+              <div style={{ opacity: 0.5, fontSize: '0.9rem', marginBottom: '5px' }}>التواصل عبر الواتساب</div>
+              <a href="https://wa.me/963946976617" target="_blank" style={{ fontSize: '1.4rem', color: '#25D366', textDecoration: 'none', fontWeight: 'bold' }}>
+                0946976617
+              </a>
+            </div>
+
+            <a href="http://survey.vividinkmedia.com" class="btn btn--primary" style={{ display: 'inline-block', padding: '18px 36px', fontSize: '1.2rem', textDecoration: 'none' }}>
+              تعبئة استبيان العميل (Client Brief) ←
+            </a>
+          </div>
+        </main>
+      )}
 
       <Footer lang={lang} onNav={onNav} />
 
