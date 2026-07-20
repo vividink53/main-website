@@ -142,34 +142,112 @@ const WorkPage = ({ lang, onNav }) => {
 
 // ============= CONTACT ==============================
 const ContactPage = ({ lang }) => {
+  const c = window.I18N.contact_page;
+  const [submitted, setSubmitted] = usePS(false);
+  const [formData, setFormData] = usePS({ name: '', company: '', email: '', phone: '', scope: '', budget: '', brief: '' });
+
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+    setSubmitted(true);
+  };
+
   return (
-    <main className="page-contact" style={{ padding: '140px 20px 80px', textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
-      <h1 className="sec-head__title" style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '20px' }}>
-        دعنا نصنع أثراً يخلد.
-      </h1>
-      <p style={{ opacity: 0.8, fontSize: '1.2rem', marginBottom: '40px' }}>
-        نحن جاهزون لبدء مشروعك القادم وصناعة أثر لا يُنسى لعلامتك التجارية.
-      </p>
+    <div className="scene page-contact">
+      <PageHero
+        kicker={c.kicker[lang]}
+        title={c.title[lang]}
+        sub={c.sub[lang]}
+      />
 
-      <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', padding: '40px', borderRadius: '24px', marginBottom: '40px' }}>
-        <div style={{ marginBottom: '25px' }}>
-          <div style={{ opacity: 0.5, fontSize: '0.9rem', marginBottom: '5px' }}>البريد الإلكتروني</div>
-          <a href="mailto:info@vividinkmedia.com" style={{ fontSize: '1.4rem', color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>
-            info@vividinkmedia.com
-          </a>
+      <section className="section contact-grid-sec">
+        <div className="contact-grid">
+          <div className="contact-info">
+            <div className="contact-info__block">
+              <span className="contact-info__lbl">{c.labels.direct[lang]}</span>
+              <a href="mailto:hello@vividink.design" className="contact-info__val">hello@vividink.design</a>
+              <a href="tel:+963000000000" className="contact-info__val">+963 00 000 0000</a>
+            </div>
+
+            <div className="contact-info__block">
+              <span className="contact-info__lbl">{c.labels.studio[lang]}</span>
+              <p className="contact-info__txt">{c.labels.location[lang]}</p>
+            </div>
+
+            <div className="contact-info__block">
+              <span className="contact-info__lbl">{c.labels.social[lang]}</span>
+              <div className="contact-info__links">
+                <a href="#" target="_blank" rel="noreferrer">Instagram ↗</a>
+                <a href="#" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+                <a href="#" target="_blank" rel="noreferrer">Behance ↗</a>
+                <a href="#" target="_blank" rel="noreferrer">X (Twitter) ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <div className="contact-form-wrap">
+            {submitted ? (
+              <div className="contact-success">
+                <div className="contact-success__mark">✓</div>
+                <h3>{c.success.title[lang]}</h3>
+                <p>{c.success.sub[lang]}</p>
+              </div>
+            ) : (
+              <form className="contact-form" onSubmit={handleSubmit}>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>{c.form.name[lang]}</label>
+                    <input type="text" required value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
+                  </div>
+                  <div className="form-group">
+                    <label>{c.form.company[lang]}</label>
+                    <input type="text" value={formData.company} onChange={e => setFormData({ ...formData, company: e.target.value })} />
+                  </div>
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>{c.form.email[lang]}</label>
+                    <input type="email" required value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} />
+                  </div>
+                  <div className="form-group">
+                    <label>{c.form.phone[lang]}</label>
+                    <input type="tel" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} />
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label>{c.form.scope[lang]}</label>
+                  <select value={formData.scope} onChange={e => setFormData({ ...formData, scope: e.target.value })}>
+                    <option value="">— {lang === 'ar' ? 'اختر النطاق' : 'Select'} —</option>
+                    {c.scopes.map((s, i) => (
+                      <option key={i} value={s.en}>{s[lang]}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="form-group">
+                  <label>{c.form.budget[lang]}</label>
+                  <select value={formData.budget} onChange={e => setFormData({ ...formData, budget: e.target.value })}>
+                    <option value="">— {lang === 'ar' ? 'اختر الميزانية' : 'Select'} —</option>
+                    {c.budgets.map((b, i) => (
+                      <option key={i} value={b}>{b}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="form-group">
+                  <label>{c.form.brief[lang]}</label>
+                  <textarea rows="4" value={formData.brief} onChange={e => setFormData({ ...formData, brief: e.target.value })}></textarea>
+                </div>
+
+                <button type="submit" className="btn btn--primary btn--full">
+                  {c.form.submit[lang]}
+                </button>
+              </form>
+            )}
+          </div>
         </div>
-
-        <div style={{ marginBottom: '35px' }}>
-          <div style={{ opacity: 0.5, fontSize: '0.9rem', marginBottom: '5px' }}>التواصل عبر الواتساب</div>
-          <a href="https://wa.me/963946976617" target="_blank" rel="noreferrer" style={{ fontSize: '1.4rem', color: '#25D366', textDecoration: 'none', fontWeight: 'bold' }}>
-            0946976617
-          </a>
-        </div>
-
-        <a href="http://survey.vividinkmedia.com" className="btn btn--primary" style={{ display: 'inline-block', padding: '18px 36px', fontSize: '1.2rem', textDecoration: 'none' }}>
-          الانتقال إلى استبيان العميل (Client Brief) ←
-        </a>
-      </div>
-    </main>
+      </section>
+    </div>
   );
 };
