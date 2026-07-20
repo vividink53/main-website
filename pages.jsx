@@ -161,7 +161,7 @@ const ContactPage = ({ lang }) => {
 
         <div style={{ marginBottom: '35px' }}>
           <div style={{ opacity: 0.5, fontSize: '0.9rem', marginBottom: '5px' }}>التواصل عبر الواتساب</div>
-          <a href="https://wa.me/963946976617" target="_blank" style={{ fontSize: '1.4rem', color: '#25D366', textDecoration: 'none', fontWeight: 'bold' }}>
+          <a href="https://wa.me/963946976617" target="_blank" rel="noreferrer" style={{ fontSize: '1.4rem', color: '#25D366', textDecoration: 'none', fontWeight: 'bold' }}>
             0946976617
           </a>
         </div>
