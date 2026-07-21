@@ -29,8 +29,6 @@ const HomePage = ({ lang, onNav }) => {
         <WorkGrid lang={lang} onNav={onNav} limit={4} />
       </section>
 
-      <FounderQuote lang={lang} />
-
       <CtaStrip lang={lang} onNav={onNav} />
     </div>
   );
@@ -79,8 +77,6 @@ const AboutPage = ({ lang }) => {
           ))}
         </div>
       </section>
-
-      <FounderQuote lang={lang} />
     </div>
   );
 };
@@ -164,8 +160,8 @@ const ContactPage = ({ lang }) => {
           <div className="contact-info">
             <div className="contact-info__block">
               <span className="contact-info__lbl">{c.labels.direct[lang]}</span>
-              <a href="mailto:hello@vividink.design" className="contact-info__val">hello@vividink.design</a>
-              <a href="tel:+963000000000" className="contact-info__val">+963 00 000 0000</a>
+              <a href="mailto:info@vividinkmedia.com" className="contact-info__val">info@vividinkmedia.com</a>
+              <a href="tel:+963946976617" className="contact-info__val">+963 946 976 617</a>
             </div>
 
             <div className="contact-info__block">
