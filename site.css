@@ -970,43 +970,6 @@ body[dir="rtl"] .foot__base { font-family: var(--font-mono); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ========== FOUNDER QUOTE ========== */
-.founder-quote {
-  background: var(--vi-black);
-  padding: 160px 64px;
-  border-top: 1px solid var(--rule);
-  text-align: center;
-}
-.founder-quote__inner { max-width: 900px; margin: 0 auto; }
-.founder-quote__mark {
-  display: block;
-  font-family: var(--font-serif);
-  font-size: 80px; line-height: 1;
-  color: var(--accent);
-  margin-bottom: 8px;
-}
-.founder-quote__text {
-  font-family: var(--font-serif); font-style: italic; font-weight: 300;
-  font-size: clamp(24px, 3vw, 34px);
-  line-height: 1.5;
-  color: var(--fg);
-  margin: 0 0 32px;
-}
-body[dir="rtl"] .founder-quote__text {
-  font-family: var(--font-arabic); font-style: normal; line-height: 1.8;
-}
-.founder-quote__attrib {
-  display: flex; flex-direction: column; gap: 4px;
-  font-family: var(--font-sans);
-}
-.founder-quote__author {
-  font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--accent); font-weight: 500;
-}
-.founder-quote__role {
-  font-size: 12px; color: var(--fg-muted); font-weight: 300;
-}
-
 /* ========== CTA STRIP ========== */
 .cta-strip {
   background: var(--vi-coal);
@@ -1058,5 +1021,5 @@ body[dir="rtl"] .cta-strip__sub { font-family: var(--font-arabic); line-height: 
   .svc__desc, .svc__arrow { grid-column: 1 / -1; padding-left: 60px; }
   body[dir="rtl"] .svc__row { grid-template-columns: 60px 1fr; }
   body[dir="rtl"] .svc__desc, body[dir="rtl"] .svc__arrow { padding-left: 0; padding-right: 60px; }
-  .founder-quote, .cta-strip { padding: 96px 28px; }
+  .cta-strip { padding: 96px 28px; }
 }
