@@ -6,7 +6,27 @@ window.I18N = {
     services: { ar: 'الخدمات', en: 'Services' },
     work: { ar: 'الأعمال', en: 'Work' },
     contact: { ar: 'تواصل معنا', en: 'Contact' },
-    start: { ar: 'ابدأ مشروعاً ←', en: 'Start a project ←' }
+    start: { ar: 'ابدأ مشروعاً ←', en: 'Start a project ←' },
+    menu: { ar: 'القائمة', en: 'Menu' },
+    close: { ar: 'إغلاق', en: 'Close' }
+  },
+
+  brand: {
+    onAir: { ar: 'الاستوديو · نعمل الآن', en: 'STUDIO · ON AIR' }
+  },
+
+  footer: {
+    lede: {
+      ar: 'صُنّاع الأثر الخالد — هوية ، سوشل ، سينما .',
+      en: 'Creators of the Immortal Mark — Identity, Social, Cinema.'
+    },
+    city: { ar: 'اللاذقية ، سوريا', en: 'Latakia, Syria' },
+    rights: { ar: '© 2026 Vividink. جميع الحقوق محفوظة .', en: '© 2026 Vividink. All rights reserved.' },
+    cols: {
+      work: { ar: 'الأعمال', en: 'Work' },
+      studio: { ar: 'الوكالة', en: 'Studio' },
+      contact: { ar: 'تواصل', en: 'Contact' }
+    }
   },
 
   hero: {
