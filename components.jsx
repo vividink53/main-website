@@ -356,7 +356,58 @@ const CaseStudy = ({ id, lang, onClose }) => {
   );
 };
 
+// === Page Hero (shared header for About / Services / Work / Contact) =====
+const PageHero = ({ kicker, title, sub }) => (
+  <header className="page-hero" data-screen-label="Page Hero">
+    <p className="page-hero__eye">
+      <span className="ln"></span>
+      <span>{kicker}</span>
+    </p>
+    <h1 className="page-hero__title">{title}</h1>
+    {sub && <p className="page-hero__lede">{sub}</p>}
+  </header>
+);
+
+// === Founder Quote =========================================================
+const FounderQuote = ({ lang }) => {
+  const f = window.I18N.founder_quote;
+  return (
+    <section className="founder-quote" data-screen-label="Founder Quote">
+      <div className="founder-quote__inner">
+        <span className="founder-quote__mark">”</span>
+        <p className="founder-quote__text">{f.quote[lang]}</p>
+        <div className="founder-quote__attrib">
+          <span className="founder-quote__author">{f.author[lang]}</span>
+          <span className="founder-quote__role">{f.role[lang]}</span>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// === CTA Strip ==============================================================
+const CtaStrip = ({ lang }) => {
+  const c = window.I18N.cta_strip;
+  return (
+    <section className="cta-strip" data-screen-label="CTA Strip">
+      <div className="cta-strip__inner">
+        <h2 className="cta-strip__title">{c.title[lang]}</h2>
+        <p className="cta-strip__sub">{c.sub[lang]}</p>
+        <a
+          className="btn btn--primary"
+          href="https://brief.vividinkmedia.com"
+          target="_blank"
+          rel="noopener"
+        >
+          {c.btn[lang]}
+        </a>
+      </div>
+    </section>
+  );
+};
+
 Object.assign(window, {
   Loader, ScrollRule, Nav, MenuOverlay, Hero, SecHead,
   Manifesto, ServiceRows, Metrics, WorkCard, WorkGrid, Footer, CaseStudy, T,
+  PageHero, FounderQuote, CtaStrip,
 });
