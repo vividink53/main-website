@@ -51,7 +51,7 @@ const AboutPage = ({ lang }) => {
       <section className="section about-split">
         <div className="about-split__grid">
           <div className="about-split__visual">
-            <img src="assets/v-mark.png" alt="Vividink" className="about-split__mark" />
+            <img src="v-mark.png" alt="Vividink" className="about-split__mark" />
             <div className="about-split__glow"></div>
           </div>
           <div className="about-split__txt">
