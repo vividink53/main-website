@@ -21,7 +21,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('../fonts/MilunoDEMO-Regular.ttf') format('truetype');
+  src: url('MilunoDEMO-Regular.ttf') format('truetype');
 }
 
 /* 29LT Zeyn — official Vividink Arabic display face.
@@ -34,7 +34,7 @@
   font-weight: 400;
   font-display: swap;
   src: local('29LT Zeyn'),
-       url('../fonts/29LTZeyn-Regular.ttf') format('truetype');
+       url('29LTZeyn-Regular.ttf') format('truetype');
 }
 
 :root {
