@@ -100,8 +100,8 @@ const MenuOverlay = ({ open, onClose, onNav, lang }) => {
           </div>
           <div>
             <h4>{lang === 'ar' ? 'تواصلْ معنا' : 'GET IN TOUCH'}</h4>
-            <a className="contact-line" href="tel:+963991636710">+963 991 636 710</a>
-            <a className="contact-line" href="mailto:vividink53@gmail.com">vividink53@gmail.com</a>
+            <a className="contact-line" href="tel:+963946976617">+963 946 976 617</a>
+            <a className="contact-line" href="mailto:info@vividinkmedia.com">info@vividinkmedia.com</a>
             <a className="contact-line" href="https://www.instagram.com/vividink53" target="_blank" rel="noopener">@vividink53</a>
           </div>
         </aside>
@@ -161,7 +161,7 @@ const Hero = ({ lang, onNav, videoOpacity }) => {
       </div>
 
       <div className="hero__corner-bl"><span className="tick"></span><span>{lang === 'ar' ? 'اللاذقية' : 'LATAKIA'}</span></div>
-      <div className="hero__corner-br"><span>{lang === 'ar' ? 'هوية · سينما' : 'IDENTITY · CINEMA'}</span><span className="tick"></span></div>
+      <div className="hero__corner-br"><span>{lang === 'ar' ? 'هوية بصرية' : 'VISUAL IDENTITY'}</span><span className="tick"></span></div>
 
       <div className="hero__scroll-hint">{lang === 'ar' ? 'مرر' : 'SCROLL'} ↓</div>
     </section>
@@ -288,8 +288,8 @@ const Footer = ({ onNav, lang }) => (
       </div>
       <div className="foot__col">
         <h4>{T('footer.cols.contact', lang)}</h4>
-        <a href="tel:+963991636710">+963 991 636 710</a>
-        <a href="mailto:vividink53@gmail.com">vividink53@gmail.com</a>
+        <a href="tel:+963946976617">+963 946 976 617</a>
+        <a href="mailto:info@vividinkmedia.com">info@vividinkmedia.com</a>
         <a href="https://www.instagram.com/vividink53" target="_blank" rel="noopener">@vividink53</a>
       </div>
     </div>
@@ -362,23 +362,6 @@ const PageHero = ({ kicker, title, sub }) => (
   </header>
 );
 
-// === Founder Quote =========================================================
-const FounderQuote = ({ lang }) => {
-  const f = window.I18N.founder_quote;
-  return (
-    <section className="founder-quote" data-screen-label="Founder Quote">
-      <div className="founder-quote__inner">
-        <span className="founder-quote__mark">”</span>
-        <p className="founder-quote__text">{f.quote[lang]}</p>
-        <div className="founder-quote__attrib">
-          <span className="founder-quote__author">{f.author[lang]}</span>
-          <span className="founder-quote__role">{f.role[lang]}</span>
-        </div>
-      </div>
-    </section>
-  );
-};
-
 // === CTA Strip ==============================================================
 const CtaStrip = ({ lang }) => {
   const c = window.I18N.cta_strip;
@@ -389,7 +372,7 @@ const CtaStrip = ({ lang }) => {
         <p className="cta-strip__sub">{c.sub[lang]}</p>
         <a
           className="btn btn--primary"
-          href="https://brief.vividinkmedia.com"
+          href="http://survey.vividinkmedia.com/"
           target="_blank"
           rel="noopener"
         >
@@ -403,5 +386,5 @@ const CtaStrip = ({ lang }) => {
 Object.assign(window, {
   Loader, ScrollRule, Nav, MenuOverlay, Hero, SecHead,
   Manifesto, ServiceRows, Metrics, WorkCard, WorkGrid, Footer, CaseStudy, T,
-  PageHero, FounderQuote, CtaStrip,
+  PageHero, CtaStrip,
 });
