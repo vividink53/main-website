@@ -15,7 +15,7 @@ const T = (k, lang) => {
 // === Loader =========================================================
 const Loader = ({ done, lang }) => (
   <div className={`loader ${done ? 'gone' : ''}`}>
-    <img className="loader__mark" src="assets/v-mark.png" alt="V" />
+    <img className="loader__mark" src="v-mark.png" alt="V" />
     <div className="loader__bar"></div>
     <div className="loader__label">
       {lang === 'ar' ? 'فيفيدنك · يحضّر المشهد' : 'VIVIDINK · LOADING THE FRAME'}
@@ -42,7 +42,7 @@ const ScrollRule = () => {
 const Nav = ({ onMenu, onNav, lang, setLang, scrolled }) => (
   <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
     <div className="nav__brand" onClick={() => onNav('home')}>
-      <img src="assets/v-mark.png" alt="V" />
+      <img src="v-mark.png" alt="V" />
       <span>VIVIDINK</span>
     </div>
     <div className="nav__right">
@@ -76,7 +76,7 @@ const MenuOverlay = ({ open, onClose, onNav, lang }) => {
     <div className={`menu ${open ? 'open' : ''}`}>
       <div className="menu__top">
         <div className="nav__brand" onClick={() => { onNav('home'); onClose(); }}>
-          <img src="assets/v-mark.png" alt="V" />
+          <img src="v-mark.png" alt="V" />
           <span>VIVIDINK</span>
         </div>
         <button className="menu__close" onClick={onClose}>
@@ -96,7 +96,7 @@ const MenuOverlay = ({ open, onClose, onNav, lang }) => {
         <aside className="menu__aside">
           <div>
             <h4>{lang === 'ar' ? 'فلسفتنا' : 'OUR PHILOSOPHY'}</h4>
-            <p>{T('manifesto.body1', lang)}</p>
+            <p>{window.I18N.manifesto.sub[lang]}</p>
           </div>
           <div>
             <h4>{lang === 'ar' ? 'تواصلْ معنا' : 'GET IN TOUCH'}</h4>
@@ -130,42 +130,40 @@ const Hero = ({ lang, onNav, videoOpacity }) => {
     }, 600);
     return () => clearTimeout(t1);
   }, []);
-  const titleHTML = lang === 'ar'
-    ? window.I18N.hero.title_ar
-    : window.I18N.hero.title_en;
+  const h = window.I18N.hero;
   return (
     <section className="hero" ref={heroRef} data-screen-label="Hero">
       <div className="hero__video-wrap">
         <video
           ref={videoRef}
           className="hero__video"
-          src="assets/hand-ink.mp4"
+          src="hand-ink.mp4"
           autoPlay muted loop playsInline
           style={{ '--hero-video-opacity': videoOpacity }}
         ></video>
       </div>
       <div className="curtain"></div>
 
-      <div className="hero__corner-tl"><span className="tick"></span><span>{T('hero.cornerTL', lang)}</span></div>
-      <div className="hero__corner-tr"><span>{T('hero.cornerTR', lang)}</span><span className="tick"></span></div>
+      <div className="hero__corner-tl"><span className="tick"></span><span>VIVIDINK</span></div>
+      <div className="hero__corner-tr"><span>{lang === 'ar' ? '٢٠٢٦' : 'EST. 2026'}</span><span className="tick"></span></div>
 
       <div className="hero__inner">
         <p className="hero__eyebrow">
           <span className="ln"></span>
-          <span>{T('hero.eyebrow', lang)}</span>
+          <span>{h.kicker[lang]}</span>
         </p>
-        <h1 className="hero__display" dangerouslySetInnerHTML={{ __html: titleHTML }}></h1>
-        <p className="hero__lede">{T('hero.lede', lang)}</p>
+        <h1 className="hero__display">{h.title[lang]}</h1>
+        <p className="hero__lede">{h.sub[lang]}</p>
         <div className="hero__cta">
-          <button className="btn btn--primary" onClick={() => onNav('work')}>{T('hero.cta1', lang)}</button>
-          <button className="btn btn--ghost" onClick={() => onNav('contact')}>{T('hero.cta2', lang)}</button>
+          <button className="btn btn--primary" onClick={() => onNav('work')}>{h.ctaWork[lang]}</button>
+          <button className="btn btn--ghost" onClick={() => onNav('contact')}>{h.ctaTalk[lang]}</button>
         </div>
       </div>
 
-      <div className="hero__corner-bl"><span className="tick"></span><span>{T('hero.cornerBL', lang)}</span></div>
-      <div className="hero__corner-br"><span>{T('hero.cornerBR', lang)}</span><span className="tick"></span></div>
+      <div className="hero__corner-bl"><span className="tick"></span><span>{lang === 'ar' ? 'اللاذقية' : 'LATAKIA'}</span></div>
+      <div className="hero__corner-br"><span>{lang === 'ar' ? 'هوية · سينما' : 'IDENTITY · CINEMA'}</span><span className="tick"></span></div>
 
-      <div className="hero__scroll-hint">{T('hero.scroll', lang)} ↓</div>
+      <div className="hero__scroll-hint">{lang === 'ar' ? 'مرر' : 'SCROLL'} ↓</div>
     </section>
   );
 };
@@ -181,17 +179,16 @@ const SecHead = ({ eyebrow, title, num }) => (
 
 // === Manifesto Strip ==============================================
 const Manifesto = ({ lang }) => {
-  const big = lang === 'ar' ? window.I18N.manifesto.big_ar : window.I18N.manifesto.big_en;
+  const m = window.I18N.manifesto;
   return (
     <section className="manifesto" data-screen-label="Manifesto">
       <div className="manifesto__inner">
-        <p className="manifesto__big" dangerouslySetInnerHTML={{ __html: big }}></p>
+        <p className="manifesto__big">{m.big[lang]}</p>
         <div className="manifesto__body">
-          <p>{T('manifesto.body1', lang)}</p>
-          <p>{T('manifesto.body2', lang)}</p>
+          <p>{m.sub[lang]}</p>
           <div className="manifesto__sig">
-            <img src="assets/v-mark.png" alt="" />
-            <span>{T('manifesto.sig', lang)}</span>
+            <img src="v-mark.png" alt="" />
+            <span>VIVIDINK</span>
           </div>
         </div>
       </div>
@@ -206,7 +203,7 @@ const ServiceRows = ({ lang, onNav }) => {
     <div className="svc">
       {list.map((s, i) => (
         <div key={i} className="svc__row" onClick={() => onNav && onNav('services')}>
-          <span className="svc__num">{lang === 'ar' ? s.num_ar : s.num_en}</span>
+          <span className="svc__num">{s.num}</span>
           <h3 className="svc__ttl">{lang === 'ar' ? s.title.ar : s.title.en}</h3>
           <p className="svc__desc">{lang === 'ar' ? s.desc.ar : s.desc.en}</p>
           <span className="svc__arrow">{lang === 'ar' ? 'اطّلع ←' : 'READ →'}</span>
@@ -218,17 +215,16 @@ const ServiceRows = ({ lang, onNav }) => {
 
 // === Metrics row ==================================================
 const Metrics = ({ lang }) => {
-  const items = lang === 'ar' ? window.I18N.metrics.items_ar : window.I18N.metrics.items_en;
+  const items = window.I18N.metrics;
   return (
     <section className="metrics" data-screen-label="Metrics">
       <div className="metrics__inner">
         {items.map((m, i) => (
           <div key={i} className="metric">
             <div className="metric__big">
-              <span className="plus">{m.u}</span>
-              <span>{m.v}</span>
+              <span>{m.num}</span>
             </div>
-            <div className="metric__lbl">{m.l}</div>
+            <div className="metric__lbl">{m.label[lang]}</div>
           </div>
         ))}
       </div>
@@ -237,34 +233,33 @@ const Metrics = ({ lang }) => {
 };
 
 // === Work Card / Grid =============================================
-const WorkCard = ({ data, lang, onOpen, columns }) => {
+const WorkCard = ({ data, lang, index }) => {
   // give cards varying aspect ratios for masonry feel
-  const variants = [
-    { ar: '4/5' }, { ar: '3/4' }, { ar: '1/1' }, { ar: '4/3' }, { ar: '5/7' },
-  ];
-  const v = variants[(parseInt(data.num, 10) - 1) % variants.length];
+  const variants = ['4/5', '3/4', '1/1', '4/3', '5/7'];
+  const ar = variants[index % variants.length];
   return (
-    <div className="work-card" onClick={() => onOpen && onOpen(data.id)}>
-      <div className="work-card__frame" style={{ aspectRatio: v.ar, background: data.accent }}>
+    <div className="work-card">
+      <div className="work-card__frame" style={{ aspectRatio: ar }}>
         <img src={data.img} alt="" />
         <div className="work-card__overlay">
-          <span className="work-card__client">{lang === 'ar' ? data.name_ar : data.name_en}</span>
-          <span className="work-card__tag">{T(`filters.${data.tag}`, lang)}</span>
+          <span className="work-card__client">{data.title[lang]}</span>
+          <span className="work-card__tag">{data.cat[lang]}</span>
         </div>
       </div>
       <div className="work-card__body">
-        <span className="work-card__num">/ {data.num}</span>
-        <span className="work-card__meta">{lang === 'ar' ? data.sector_ar : data.sector_en}</span>
+        <span className="work-card__num">/ {String(index + 1).padStart(2, '0')}</span>
+        <span className="work-card__meta">{data.scope[lang]} · {data.year}</span>
       </div>
     </div>
   );
 };
 
-const WorkGrid = ({ lang, onOpen, filter = 'all', columns = 3 }) => {
-  const list = window.I18N.clients.filter(c => filter === 'all' || c.tag === filter);
+const WorkGrid = ({ lang, limit, columns = 3 }) => {
+  const full = window.I18N.portfolio;
+  const list = limit ? full.slice(0, limit) : full;
   return (
     <div className={`work-grid cols-${columns}`}>
-      {list.map(c => <WorkCard key={c.id} data={c} lang={lang} onOpen={onOpen} columns={columns} />)}
+      {list.map((c, i) => <WorkCard key={c.id} data={c} lang={lang} index={i} />)}
     </div>
   );
 };
@@ -276,16 +271,15 @@ const Footer = ({ onNav, lang }) => (
       <div>
         <p className="foot__lede">{T('footer.lede', lang)}</p>
         <div className="foot__brand">
-          <img src="assets/v-mark.png" alt="" />
+          <img src="v-mark.png" alt="" />
           <span>VIVIDINK</span>
         </div>
       </div>
       <div className="foot__col">
         <h4>{T('footer.cols.work', lang)}</h4>
-        <a onClick={() => onNav('work')}>{T('filters.all', lang)}</a>
-        <a onClick={() => onNav('work')}>{T('filters.identity', lang)}</a>
-        <a onClick={() => onNav('work')}>{T('filters.package', lang)}</a>
-        <a onClick={() => onNav('work')}>{T('filters.graphic', lang)}</a>
+        {window.I18N.services.map(s => (
+          <a key={s.id} onClick={() => onNav('work')}>{s.title[lang]}</a>
+        ))}
       </div>
       <div className="foot__col">
         <h4>{T('footer.cols.studio', lang)}</h4>
