@@ -17,8 +17,8 @@ window.I18N = {
 
   footer: {
     lede: {
-      ar: 'صُنّاع الأثر الخالد — هوية ، سوشل ، سينما .',
-      en: 'Creators of the Immortal Mark — Identity, Social, Cinema.'
+      ar: 'صُنّاع الأثر الخالد — هوية بصرية ، سوشل ميديا ، محتوى .',
+      en: 'Creators of the Immortal Mark — Identity, Social, Content.'
     },
     city: { ar: 'اللاذقية ، سوريا', en: 'Latakia, Syria' },
     rights: { ar: '© 2026 Vividink. جميع الحقوق محفوظة .', en: '© 2026 Vividink. All rights reserved.' },
@@ -30,7 +30,7 @@ window.I18N = {
   },
 
   hero: {
-    kicker: { ar: 'هوية · سوشل · سِينِما', en: 'IDENTITY · SOCIAL · CINEMA' },
+    kicker: { ar: 'هوية · سوشل ميديا · محتوى', en: 'IDENTITY · SOCIAL · CONTENT' },
     title: { ar: 'صُنّاع الأَثَر الخالد .', en: 'Creators of the Immortal Mark.' },
     sub: {
       ar: 'فريق إبداعي متكامل لصياغة هويات بصرية لا تُنسى . جذور كلاسيكية ، حدّة معاصرة — عقودٌ بصرية بين علامتك وجمهورها .',
@@ -43,7 +43,7 @@ window.I18N = {
 
   metrics: [
     { num: '100%', label: { ar: 'التزام بصري وتأصيلي', en: 'Visual & conceptual rigor' } },
-    { num: '360°', label: { ar: 'إنتاج إستراتيجي وسينمائي', en: 'Full-spectrum production' } },
+    { num: '360°', label: { ar: 'تنفيذ استراتيجي شامل', en: 'Full-spectrum production' } },
     { num: '01',   label: { ar: 'معيارٌ واحد — الخلود', en: 'Single standard — Immortality' } }
   ],
 
@@ -79,18 +79,8 @@ window.I18N = {
       tags: ['Brand Mark', 'Identity System', 'Guidelines', 'Print Culture']
     },
     {
-      id: 'video',
-      num: '02',
-      title: { ar: 'الإنتاج المرئي والسينمائي', en: 'Video & Film Production' },
-      desc: {
-        ar: 'سرد سينمائي رفيع المستوى لبراندات الفخامة والمنتجات ، مدعوم بتقنيات الذكاء الاصطناعي التوليدي والخدع البصرية .',
-        en: 'High-end cinematic storytelling for luxury brands, backed by generative AI and visual mastery.'
-      },
-      tags: ['Cinematic Ads', 'AI Video Generation', '3D / VFX', 'Brand Films']
-    },
-    {
       id: 'social',
-      num: '03',
+      num: '02',
       title: { ar: 'إدارة السوشل ميديا والاستراتيجية', en: 'Social Media & Content Strategy' },
       desc: {
         ar: 'تخطيط وتنفيذ حملات تسويقية عابرة للحدود ، تستهدف السوق الخليجي بلهجة محلية واستهداف نخبوي .',
@@ -174,8 +164,8 @@ window.I18N = {
     },
     manifestoTitle: { ar: 'العهد البصري', en: 'THE VISUAL COVENANT' },
     manifestoLead: {
-      ar: 'نجمع بين الهندسة الميكاترونيكية الدقيقة ، الجماليات البصرية الكلاسيكية ، والسرد القصصي السينمائي .',
-      en: 'We bridge mechatronic geometric precision, classical aesthetics, and cinematic storytelling.'
+      ar: 'نجمع بين الدقة الهندسية ، الجماليات البصرية الكلاسيكية ، والتفكير الاستراتيجي المدروس في كل تفصيل .',
+      en: 'We bridge geometric precision, classical aesthetics, and deliberate strategic thinking in every detail.'
     },
     manifestoP1: {
       ar: 'كل علامة نخرجها تمر بعشرات الساعات من التفكيك المفاهيمي والدراسة التنافسية قبل رسم الخط الأول .',
@@ -195,8 +185,8 @@ window.I18N = {
         desc: { ar: 'لا وجود لعنصر عشوائي ؛ كل لون وزاوية تحمل معنى استراتيجياً .', en: 'No arbitrary aesthetics; every stroke and shade bears strategic intent.' }
       },
       {
-        title: { ar: 'التوليد السينمائي', en: 'Cinematic AI Generation' },
-        desc: { ar: 'دمج Veo و Kling لبناء مشاهد إعلانية تحاكي أضخم الإنتاجات العالمية .', en: 'Mastery of Veo and Kling workflows to engineer world-class commercial visuals.' }
+        title: { ar: 'التنفيذ الاستراتيجي', en: 'Strategic Execution' },
+        desc: { ar: 'خطط محتوى مدروسة ونتائج قابلة للقياس عبر منصات التواصل الاجتماعي .', en: 'Deliberate content planning and measurable results across social platforms.' }
       }
     ]
   },
@@ -220,19 +210,6 @@ window.I18N = {
           { ar: 'تصميم الشعارات والمجسمات الهندسيّة', en: 'Geometric Mark & Logotype Engineering' },
           { ar: 'كتيب دليل الهوية المكتمل (Brand Book)', en: 'Comprehensive Brand Book & Guidelines' },
           { ar: 'تطبيقات المطبوعات والتغليف الفاخر', en: 'Luxury Print Culture & Packaging Applications' }
-        ]
-      },
-      {
-        id: 'video',
-        title: { ar: 'الإنتاج الإعلاني والـ AI Video', en: 'Commercial Film & AI Video' },
-        desc: {
-          ar: 'هندسة محتوى فيديو سينمائي باستخدام أحدث الأدوات التوليدية والتصوير الميداني الواقعي .',
-          en: 'Cinematic video engineering combining AI generation workflows with real-world production.'
-        },
-        bullets: [
-          { ar: 'إعلانات سينمائية لبراندات الأثاث والفخامة', en: 'Cinematic Ads for Furniture & Luxury Brands' },
-          { ar: 'سلسلة السرد التاريخي بزماناتو (Bezmanato)', en: 'Bezmanato Historical Storytelling Series' },
-          { ar: 'مؤثرات بصرية وتركيب سينمائي (VFX)', en: 'Visual Effects & High-End Post-Production' }
         ]
       },
       {
@@ -285,7 +262,6 @@ window.I18N = {
     },
     scopes: [
       { ar: 'صناعة هوية بصرية متكاملة', en: 'Full Brand Identity' },
-      { ar: 'إنتاج إعلاني سينمائي (AI / Shoot)', en: 'Commercial Video Production' },
       { ar: 'إدارة حملات تسويقية وتصوير واقعي', en: 'Marketing Campaigns & Shoots' },
       { ar: 'استشارة وإشراف إستراتيجي', en: 'Strategic Consultation' }
     ],
