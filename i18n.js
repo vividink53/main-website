@@ -33,8 +33,8 @@ window.I18N = {
     kicker: { ar: 'هوية · سوشل ميديا · محتوى', en: 'IDENTITY · SOCIAL · CONTENT' },
     title: { ar: 'صُنّاع الأَثَر الخالد .', en: 'Creators of the Immortal Mark.' },
     sub: {
-      ar: 'فريق إبداعي متكامل لصياغة هويات بصرية لا تُنسى . جذور كلاسيكية ، حدّة معاصرة — عقودٌ بصرية بين علامتك وجمهورها .',
-      en: 'A full-service creative engine crafting unforgettable visual identities. Classical roots, contemporary edge — visual covenants between your brand and its audience.'
+      ar: 'فريق إبداعي متكامل لصياغة هويات بصرية لا تُنسى ، من اللاذقية إلى السعودية والخليج العربي . جذور كلاسيكية ، حدّة معاصرة — عقودٌ بصرية بين علامتك وجمهورها .',
+      en: 'A full-service creative engine crafting unforgettable visual identities — from Latakia to Saudi Arabia and the Gulf. Classical roots, contemporary edge.'
     },
     ctaWork: { ar: 'شاهد الأعمال', en: 'View Work' },
     ctaTalk: { ar: 'ابدأ مشروعاً ←', en: 'Start a Project ←' },
@@ -87,6 +87,16 @@ window.I18N = {
         en: 'Strategic content matrices and cross-border campaigns tailored for regional resonance.'
       },
       tags: ['Content Matrix', 'Gulf Targeting', 'Local Copywriting', 'Campaign Audits']
+    },
+    {
+      id: 'video',
+      num: '03',
+      title: { ar: 'إنتاج وتحرير الفيديو والريلز', en: 'Video & Reels Production' },
+      desc: {
+        ar: 'إنتاج وتحرير محتوى فيديو وريلز احترافي ، مدعوم بالذكاء الاصطناعي التوليدي عند الحاجة .',
+        en: 'Professional video and reels production and editing, supported by generative AI workflows when needed.'
+      },
+      tags: ['Reels Editing', 'AI Video Generation', 'Content Calendars', 'Photography']
     }
   ],
 
@@ -103,34 +113,74 @@ window.I18N = {
     {
       id: 'anzu',
       title: { ar: 'أنزو — Anzu', en: 'Anzu' },
-      cat: { ar: 'هوية بصرية · أزياء f/w', en: 'Visual Identity · F/W Campaign' },
-      img: 'portfolio-cover.png',
-      scope: { ar: 'شعار ، دليل بصرية ، إنتاج سينمائي', en: 'Mark, Identity Guide, Cinema' },
+      cat: { ar: 'هوية بصرية · تجميل فاخر', en: 'Visual Identity · Luxury Cosmetics' },
+      img: 'portfolio-anzu.jpg',
+      scope: { ar: 'شعار ، دليل هوية بصرية ، تصميم تغليف المنتجات', en: 'Logo, Brand Guidelines, Product Packaging Design' },
       year: '2026'
     },
     {
-      id: 'nasma',
-      title: { ar: 'نسمة — Nasma', en: 'Nasma' },
-      cat: { ar: 'حملات بصرية · محتوى واقعي', en: 'Visual Campaign · Real Shoots' },
-      img: 'portfolio-chess.png',
-      scope: { ar: 'استراتيجية محتوى ، تصوير فوتوغرافي', en: 'Content Strategy, Photography' },
+      id: 'artemis',
+      title: { ar: 'أرتيميس — Artemis', en: 'Artemis' },
+      cat: { ar: 'هوية بصرية · أزياء رياضية', en: 'Visual Identity · Sportswear' },
+      img: 'portfolio-artemis.jpg',
+      scope: { ar: 'شعار ، هوية بصرية كاملة ، حملة أسلوب حياة', en: 'Logo, Full Brand Identity, Lifestyle Campaign' },
       year: '2026'
     },
     {
-      id: 'exhibition',
-      title: { ar: 'المعرض المعماري', en: 'Architectural Exhibition' },
-      cat: { ar: 'تصميم مساحي · بوسترات', en: 'Spatial Design · Posters' },
-      img: 'portfolio-exhibition.png',
-      scope: { ar: 'بوسترات باروكية ، تصميم زوايا', en: 'Baroque Posters, Space Layout' },
-      year: '2025'
+      id: 'grillo',
+      title: { ar: 'غريلو — Grillo', en: 'Grillo' },
+      cat: { ar: 'هوية بصرية · مطاعم سريعة', en: 'Visual Identity · Fast Food' },
+      img: 'portfolio-grillo.jpg',
+      scope: { ar: 'شعار ، شخصية العلامة ، تغليف ولوازم الفرع', en: 'Logo, Brand Mascot, Packaging & Uniform Design' },
+      year: '2026'
     },
     {
-      id: 'fabric',
-      title: { ar: 'جوهر النسيج', en: 'Fabric Essence' },
-      cat: { ar: 'إنتاج إعلاني · AI Video', en: 'Commercial Production · AI' },
-      img: 'portfolio-fabric-essence.png',
-      scope: { ar: 'إعلان توليدي ، Veo / Kling Workflow', en: 'Generative Commercial, AI Workflow' },
-      year: '2025'
+      id: 'bld',
+      title: { ar: 'B.L.D للعيادات', en: 'B.L.D Clinics' },
+      cat: { ar: 'هوية بصرية · مراكز تجميل', en: 'Visual Identity · Beauty Clinics' },
+      img: 'portfolio-bld.jpg',
+      scope: { ar: 'شعار ، هوية بصرية ، لوازم طبية وتسويقية', en: 'Logo, Brand Identity, Medical & Marketing Collateral' },
+      year: '2026'
+    },
+    {
+      id: 'quasar',
+      title: { ar: 'كوازار — El Quasar', en: 'El Quasar' },
+      cat: { ar: 'هوية بصرية · تسويق رياضي', en: 'Visual Identity · Sports Marketing' },
+      img: 'portfolio-quasar.jpg',
+      scope: { ar: 'شعار ، هوية بصرية ، تصميم منصة رقمية', en: 'Logo, Brand Identity, Digital Platform Design' },
+      year: '2026'
+    },
+    {
+      id: 'quark',
+      title: { ar: 'أكاديمية كوارك — اللاذقية', en: 'Quark Academy — Latakia' },
+      cat: { ar: 'إدارة سوشل ميديا · أكاديمية رياضية', en: 'Social Media Management · Sports Academy' },
+      img: 'portfolio-quark.jpg',
+      scope: { ar: 'شراكة مستمرة — أكثر من 100 ريل ومحتوى وصل لأكثر من مليون مشاهدة', en: 'Ongoing Partnership — 100+ Reels, 1M+ Views Reached' },
+      year: '2026'
+    },
+    {
+      id: 'axis',
+      title: { ar: 'أكسيس ديزاين ستوديو', en: 'Axis Design Studio' },
+      cat: { ar: 'إدارة سوشل ميديا · تصميم داخلي', en: 'Social Media Management · Interior Design' },
+      img: 'portfolio-axis.jpg',
+      scope: { ar: 'شراكة 4 أشهر — السعودية ، أكثر من 20 عميلاً محتملاً من الإعلانات', en: '4-Month Partnership — Saudi Arabia, 20+ Qualified Leads' },
+      year: '2026'
+    },
+    {
+      id: 'nassma',
+      title: { ar: 'نسمة — Nassma', en: 'Nassma' },
+      cat: { ar: 'إدارة سوشل ميديا · محتوى ذكاء اصطناعي', en: 'Social Media Management · AI Content' },
+      img: 'portfolio-nassma.jpg',
+      scope: { ar: 'شراكة مستمرة — دمشق ، أكثر من 20 ريل بتقنيات الذكاء الاصطناعي', en: 'Ongoing Partnership — Damascus, 20+ AI-Generated Reels' },
+      year: '2026'
+    },
+    {
+      id: 'worldgate',
+      title: { ar: 'بوابة العالم — World Gate', en: 'World Gate' },
+      cat: { ar: 'تصميم غرافيكي · شحن وتخليص جمركي', en: 'Graphic Design · Shipping & Customs' },
+      img: 'portfolio-worldgate.jpg',
+      scope: { ar: 'تصاميم إعلانية دورية للمنصات الرقمية', en: 'Recurring Ad Creative for Digital Platforms' },
+      year: '2026'
     }
   ],
 
@@ -164,16 +214,16 @@ window.I18N = {
     },
     manifestoTitle: { ar: 'العهد البصري', en: 'THE VISUAL COVENANT' },
     manifestoLead: {
-      ar: 'نجمع بين الدقة الهندسية ، الجماليات البصرية الكلاسيكية ، والتفكير الاستراتيجي المدروس في كل تفصيل .',
-      en: 'We bridge geometric precision, classical aesthetics, and deliberate strategic thinking in every detail.'
+      ar: 'نحن فريق إبداعي متكامل مقرّه اللاذقية ، نكرّس خبرتنا في تصميم الهوية البصرية وإدارة السوشل ميديا لصياغة علامات تجارية تتجاوز حدود الزمن ، ونخدم عملاء في سوريا والسعودية ودول الخليج العربي .',
+      en: 'We are a full-service creative team based in Latakia, dedicated to brand identity design and social media management that transcends time — serving clients across Syria, Saudi Arabia, and the Gulf.'
     },
     manifestoP1: {
-      ar: 'كل علامة نخرجها تمر بعشرات الساعات من التفكيك المفاهيمي والدراسة التنافسية قبل رسم الخط الأول .',
-      en: 'Every mark undergoes rigorous conceptual deconstruction and competitive analysis before the first vector is drawn.'
+      ar: 'في عالمٍ يغرق في الرسائل العابرة والضجيج البصري ، نرفض في Vividink الاكتفاء بالجماليات المؤقتة . نؤمن ببناء "عقود بصرية" متينة ومباشرة بين علامتك التجارية وجمهورها ، لنضمن أن يكون لكل علامة نصنعها صدى لا يُمحى .',
+      en: 'In a world drowning in fleeting messages and visual noise, Vividink refuses to settle for temporary aesthetics. We believe in building enduring, direct visual covenants between your brand and its audience — ensuring every mark we create leaves an indelible impression.'
     },
     manifestoP2: {
-      ar: 'نؤمن أن المحتوى الحقيقي هو المحتوى الواقعي والإستراتيجي الموجه بعناية نحو الجمهور الاستثماري الصحيح .',
-      en: 'We believe genuine impact relies on authentic, highly strategic content targeted precisely at value-driven audiences.'
+      ar: 'فلسفتنا مستوحاة من عظمة التماثيل اليونانية وروائع عصر النهضة ، تلك الأعمال التي لم تُخلق لمجرد الزينة بل لتروي قصصاً تظل حية ونابضة عبر القرون . نجسّر الفجوة بين هذا التراث العريق والدقة الهندسية المعاصرة ، فنمنح علامتك التجارية هوية استراتيجية مصممة لاختراق ضجيج السوق .',
+      en: 'Our philosophy draws from the grandeur of Greek sculpture and Renaissance masterworks — art created not for decoration, but to tell stories that remain vivid across centuries. We bridge that heritage with contemporary geometric precision, giving your brand a strategic identity engineered to cut through market noise.'
     },
     pillars: [
       {
@@ -210,6 +260,19 @@ window.I18N = {
           { ar: 'تصميم الشعارات والمجسمات الهندسيّة', en: 'Geometric Mark & Logotype Engineering' },
           { ar: 'كتيب دليل الهوية المكتمل (Brand Book)', en: 'Comprehensive Brand Book & Guidelines' },
           { ar: 'تطبيقات المطبوعات والتغليف الفاخر', en: 'Luxury Print Culture & Packaging Applications' }
+        ]
+      },
+      {
+        id: 'video',
+        title: { ar: 'إنتاج وتحرير الفيديو والريلز', en: 'Video & Reels Production' },
+        desc: {
+          ar: 'محتوى فيديو وريلز احترافي مصمم للتفاعل ، من التصوير الميداني إلى المونتاج والذكاء الاصطناعي التوليدي .',
+          en: 'Professional video and reels engineered for engagement, from field shoots to editing and generative AI workflows.'
+        },
+        bullets: [
+          { ar: 'تصوير ومونتاج ريلز احترافي', en: 'Professional Reels Shooting & Editing' },
+          { ar: 'محتوى فيديو مولّد بالذكاء الاصطناعي', en: 'AI-Generated Video Content' },
+          { ar: 'جدولة ونشر دوري ومتابعة الأداء', en: 'Content Scheduling & Performance Tracking' }
         ]
       },
       {
