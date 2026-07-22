@@ -15,7 +15,7 @@ const T = (k, lang) => {
 // === Loader =========================================================
 const Loader = ({ done, lang }) => (
   <div className={`loader ${done ? 'gone' : ''}`}>
-    <img className="loader__mark" src="v-mark.png" alt="V" />
+    <img className="loader__mark" src="v-mark.png" alt="Vividink logo" />
     <div className="loader__bar"></div>
     <div className="loader__label">
       {lang === 'ar' ? 'فيفيدنك · يحضّر المشهد' : 'VIVIDINK · LOADING THE FRAME'}
@@ -42,7 +42,7 @@ const ScrollRule = () => {
 const Nav = ({ onMenu, onNav, lang, setLang, scrolled }) => (
   <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
     <div className="nav__brand" onClick={() => onNav('home')}>
-      <img src="v-mark.png" alt="V" />
+      <img src="v-mark.png" alt="Vividink logo" />
       <span>VIVIDINK</span>
     </div>
     <div className="nav__right">
@@ -76,7 +76,7 @@ const MenuOverlay = ({ open, onClose, onNav, lang }) => {
     <div className={`menu ${open ? 'open' : ''}`}>
       <div className="menu__top">
         <div className="nav__brand" onClick={() => { onNav('home'); onClose(); }}>
-          <img src="v-mark.png" alt="V" />
+          <img src="v-mark.png" alt="Vividink logo" />
           <span>VIVIDINK</span>
         </div>
         <button className="menu__close" onClick={onClose}>
@@ -187,7 +187,7 @@ const Manifesto = ({ lang }) => {
         <div className="manifesto__body">
           <p>{m.sub[lang]}</p>
           <div className="manifesto__sig">
-            <img src="v-mark.png" alt="" />
+            <img src="v-mark.png" alt="Vividink logo" />
             <span>VIVIDINK</span>
           </div>
         </div>
@@ -240,7 +240,7 @@ const WorkCard = ({ data, lang, index }) => {
   return (
     <div className="work-card">
       <div className="work-card__frame" style={{ aspectRatio: ar }}>
-        <img src={data.img} alt="" />
+        <img src={data.img} alt={data.title[lang] + " — " + data.cat[lang]} />
         <div className="work-card__overlay">
           <span className="work-card__client">{data.title[lang]}</span>
           <span className="work-card__tag">{data.cat[lang]}</span>
@@ -271,7 +271,7 @@ const Footer = ({ onNav, lang }) => (
       <div>
         <p className="foot__lede">{T('footer.lede', lang)}</p>
         <div className="foot__brand">
-          <img src="v-mark.png" alt="" />
+          <img src="v-mark.png" alt="Vividink logo" />
           <span>VIVIDINK</span>
         </div>
       </div>
@@ -317,7 +317,7 @@ const CaseStudy = ({ id, lang, onClose }) => {
           <span>{lang === 'ar' ? 'إغلاق' : 'Close'}</span><span className="x">×</span>
         </button>
         <div className="case__hero">
-          <img src={cs.hero} alt="" />
+          <img src={cs.hero} alt={cs.title ? cs.title[lang] : ""} />
           <div className="case__hero-overlay">
             <p className="case__kicker">{lang === 'ar' ? cs.kicker.ar : cs.kicker.en}</p>
             <h1 className="case__name">{lang === 'ar' ? cs.name.ar : cs.name.en}</h1>
@@ -338,7 +338,7 @@ const CaseStudy = ({ id, lang, onClose }) => {
         </div>
         {cs.sections.map((sec, i) => (
           <section key={i} className="case__section">
-            <div className="case__section-img"><img src={sec.img} alt="" /></div>
+            <div className="case__section-img"><img src={sec.img} alt={lang === 'ar' ? sec.heading_ar : sec.heading_en} /></div>
             <div className="case__section-txt">
               <h3>{lang === 'ar' ? sec.heading_ar : sec.heading_en}</h3>
               <p>{lang === 'ar' ? sec.body_ar : sec.body_en}</p>
