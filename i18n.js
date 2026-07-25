@@ -315,23 +315,15 @@ window.I18N = {
     },
     form: {
       name: { ar: 'الاسم الكامل', en: 'Full Name' },
-      company: { ar: 'اسم الشركة / البراند', en: 'Company / Brand Name' },
       email: { ar: 'البريد الإلكتروني', en: 'Email Address' },
-      phone: { ar: 'رقم الهاتف / الواتساب', en: 'Phone / WhatsApp' },
-      scope: { ar: 'نطاق المشروع المطلوب', en: 'Project Scope' },
-      budget: { ar: 'الميزانية التقديرية', en: 'Estimated Budget' },
-      brief: { ar: 'نبذة مختصرة عن المشروع', en: 'Brief Overview' },
-      submit: { ar: 'إرسال الطلب ←', en: 'Submit Inquiry ←' }
+      message: { ar: 'رسالتك', en: 'Your Message' },
+      submit: { ar: 'إرسال ←', en: 'Send ←' },
+      submitting: { ar: 'جارِ الإرسال ...', en: 'Sending...' },
+      error: { ar: 'حدث خطأ ، حاول مرة أخرى أو راسلنا مباشرة على الإيميل .', en: 'Something went wrong. Please try again or email us directly.' }
     },
-    scopes: [
-      { ar: 'صناعة هوية بصرية متكاملة', en: 'Full Brand Identity' },
-      { ar: 'إدارة حملات تسويقية وتصوير واقعي', en: 'Marketing Campaigns & Shoots' },
-      { ar: 'استشارة وإشراف إستراتيجي', en: 'Strategic Consultation' }
-    ],
-    budgets: ['$1,500 – $3,000', '$3,000 – $7,000', '$7,000+'],
     success: {
-      title: { ar: 'تم استلام طلبك بنجاح !', en: 'Inquiry Received Successfully!' },
-      sub: { ar: 'سيتواصل معك فريقنا خلال 24 ساعة لترتيب اجتماع الاستراتيجية .', en: 'Our team will reach out within 24 hours to schedule a consultation.' }
+      title: { ar: 'تم استلام رسالتك بنجاح !', en: 'Message Received!' },
+      sub: { ar: 'سيتواصل معك فريقنا خلال 24 ساعة .', en: 'Our team will reach out within 24 hours.' }
     }
   }
 };
