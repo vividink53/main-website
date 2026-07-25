@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <title>Vividink | فيفيدينك — وكالة هوية بصرية وتسويق رقمي في اللاذقية سوريا والخليج</title>
-<meta name="description" content="Vividink (فيفيدينك) وكالة إبداعية متخصصة في تصميم الهوية البصرية، إدارة السوشل ميديا، وإنتاج الفيديو والريلز بالذكاء الاصطناعي — نخدم عملاء في سوريا والسعودية والخليج العربي. Creative branding, social media & AI video agency based in Latakia, serving Syria, Saudi Arabia & the Gulf."/>
+<meta name="description" content="Vividink (فيفيدينك) وكالة إبداعية متخصصة في تصميم الهوية البصرية، إدارة السوشل ميديا، وإنتاج الفيديو والريلز بالذكاء الاصطناعي — نخدم عملاء في سوريا والخليج العربي. Creative branding, social media & AI video agency based in Latakia, serving Syria, Saudi Arabia & the Gulf."/>
 <meta name="keywords" content="وكالة تسويق, هوية بصرية, تصميم شعارات, إدارة سوشل ميديا, وكالة تصميم اللاذقية, وكالة تسويق سوريا, وكالة تسويق السعودية, تصميم هوية تجارية الخليج, brand identity agency, social media management, logo design Syria, marketing agency Saudi Arabia, Gulf branding agency"/>
 <meta name="author" content="Vividink"/>
 <meta name="robots" content="index, follow"/>
@@ -58,9 +58,15 @@ const detectLang = () => {
   return l.startsWith('ar') ? 'ar' : 'en';
 };
 
+const VALID_SCENES = ['home', 'about', 'services', 'work', 'contact'];
+const getSceneFromHash = () => {
+  const h = window.location.hash.replace('#', '');
+  return VALID_SCENES.includes(h) ? h : 'home';
+};
+
 function App() {
   const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
-  const [scene, setScene] = useState('home');
+  const [scene, setScene] = useState(getSceneFromHash());
   const [menuOpen, setMenuOpen] = useState(false);
   const [navScrolled, setNavScrolled] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -101,7 +107,23 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, [scene]);
 
-  const onNav = (key) => { setScene(key); setMenuOpen(false); };
+  // Browser back/forward + direct-link support via URL hash
+  useEffect(() => {
+    const onHashChange = () => setScene(getSceneFromHash());
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
+
+  const onNav = (key) => {
+    const target = VALID_SCENES.includes(key) ? key : 'home';
+    const currentHash = window.location.hash.replace('#', '');
+    if (currentHash !== target) {
+      window.location.hash = target === 'home' ? '' : target;
+    } else {
+      setScene(target);
+    }
+    setMenuOpen(false);
+  };
 
   window.__heroOpacity = tweaks.heroVideoOpacity / 100;
 
