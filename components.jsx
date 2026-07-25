@@ -39,25 +39,33 @@ const ScrollRule = () => {
 };
 
 // === Nav ===========================================================
-const Nav = ({ onMenu, onNav, lang, setLang, scrolled }) => (
-  <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
-    <div className="nav__brand" onClick={() => onNav('home')}>
-      <img src="v-mark.png" alt="Vividink logo" />
-      <span>VIVIDINK</span>
-    </div>
-    <div className="nav__right">
-      <button className="nav__lang" onClick={() => setLang(lang === 'ar' ? 'en' : 'ar')}>
-        <span className={lang === 'en' ? 'active' : ''}>EN</span>
-        <span className="sep"></span>
-        <span className={lang === 'ar' ? 'active' : ''}>ع</span>
-      </button>
-      <button className="nav__menu-btn" onClick={onMenu}>
-        <span className="lines"><span></span><span></span></span>
-        <span>{T('nav.menu', lang)}</span>
-      </button>
-    </div>
-  </nav>
-);
+const Nav = ({ onMenu, onNav, lang, setLang, scrolled }) => {
+  const links = ['about', 'services', 'work', 'contact'];
+  return (
+    <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
+      <div className="nav__brand" onClick={() => onNav('home')}>
+        <img src="v-mark.png" alt="Vividink logo" />
+        <span>VIVIDINK</span>
+      </div>
+      <div className="nav__links">
+        {links.map(k => (
+          <a key={k} onClick={() => onNav(k)}>{T(`nav.${k}`, lang)}</a>
+        ))}
+      </div>
+      <div className="nav__right">
+        <button className="nav__lang" onClick={() => setLang(lang === 'ar' ? 'en' : 'ar')}>
+          <span className={lang === 'en' ? 'active' : ''}>EN</span>
+          <span className="sep"></span>
+          <span className={lang === 'ar' ? 'active' : ''}>ع</span>
+        </button>
+        <button className="nav__menu-btn" onClick={onMenu}>
+          <span className="lines"><span></span><span></span></span>
+          <span>{T('nav.menu', lang)}</span>
+        </button>
+      </div>
+    </nav>
+  );
+};
 
 // === Menu Overlay ==================================================
 const MenuOverlay = ({ open, onClose, onNav, lang }) => {
@@ -233,12 +241,12 @@ const Metrics = ({ lang }) => {
 };
 
 // === Work Card / Grid =============================================
-const WorkCard = ({ data, lang, index }) => {
+const WorkCard = ({ data, lang, index, onOpen }) => {
   // give cards varying aspect ratios for masonry feel
   const variants = ['4/5', '3/4', '1/1', '4/3', '5/7'];
   const ar = variants[index % variants.length];
   return (
-    <div className="work-card">
+    <div className="work-card" onClick={() => onOpen(data)} role="button" tabIndex={0}>
       <div className="work-card__frame" style={{ aspectRatio: ar }}>
         <img src={data.img} alt={data.title[lang] + " — " + data.cat[lang]} />
         <div className="work-card__overlay">
@@ -254,13 +262,43 @@ const WorkCard = ({ data, lang, index }) => {
   );
 };
 
+// === Simple work-detail modal (lightweight, no separate case-study data needed) ====
+const WorkDetail = ({ data, lang, onClose }) => {
+  useEffect(() => {
+    document.body.classList.add('lock');
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => { document.body.classList.remove('lock'); window.removeEventListener('keydown', onKey); };
+  }, []);
+  return (
+    <div className="work-detail" onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
+      <div className="work-detail__shell">
+        <button className="work-detail__close" onClick={onClose}>
+          <span>{lang === 'ar' ? 'إغلاق' : 'Close'}</span><span className="x">×</span>
+        </button>
+        <div className="work-detail__img"><img src={data.img} alt={data.title[lang]} /></div>
+        <div className="work-detail__body">
+          <p className="work-detail__cat">{data.cat[lang]}</p>
+          <h2 className="work-detail__title">{data.title[lang]}</h2>
+          <p className="work-detail__scope">{data.scope[lang]}</p>
+          <span className="work-detail__year">{data.year}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const WorkGrid = ({ lang, limit, columns = 3 }) => {
+  const [active, setActive] = useState(null);
   const full = window.I18N.portfolio;
   const list = limit ? full.slice(0, limit) : full;
   return (
-    <div className={`work-grid cols-${columns}`}>
-      {list.map((c, i) => <WorkCard key={c.id} data={c} lang={lang} index={i} />)}
-    </div>
+    <>
+      <div className={`work-grid cols-${columns}`}>
+        {list.map((c, i) => <WorkCard key={c.id} data={c} lang={lang} index={i} onOpen={setActive} />)}
+      </div>
+      {active && <WorkDetail data={active} lang={lang} onClose={() => setActive(null)} />}
+    </>
   );
 };
 
