@@ -1096,6 +1096,11 @@ body[dir="rtl"] .form-group select {
 }
 .form-group textarea { resize: vertical; min-height: 100px; font-family: var(--font-sans); }
 .btn--full { width: 100%; text-align: center; margin-top: 8px; }
+.form-error {
+  font-family: var(--font-sans); font-size: 13px; color: var(--accent);
+  margin: -8px 0 0;
+}
+body[dir="rtl"] .form-error { font-family: var(--font-arabic); }
 
 /* -- Success state -- */
 .contact-success {
