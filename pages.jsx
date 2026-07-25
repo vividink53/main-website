@@ -137,14 +137,35 @@ const WorkPage = ({ lang, onNav }) => {
 };
 
 // ============= CONTACT ==============================
+// IMPORTANT: replace this with your own Google Apps Script "Web app" URL
+// (see contact-form-apps-script.gs for the script + deployment steps).
+const CONTACT_FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyh-3ADECPbookIt-Y1q0VeEjF0lNW8a0VdHHQ-CdqCKyHbX2H2kiwl2H1heYfpLzOh2A/exec';
+
 const ContactPage = ({ lang }) => {
   const c = window.I18N.contact_page;
-  const [submitted, setSubmitted] = usePS(false);
-  const [formData, setFormData] = usePS({ name: '', company: '', email: '', phone: '', scope: '', budget: '', brief: '' });
+  const [status, setStatus] = usePS('idle'); // idle | sending | success | error
+  const [formData, setFormData] = usePS({ name: '', email: '', message: '' });
 
-  const handleSubmit = (ev) => {
+  const handleSubmit = async (ev) => {
     ev.preventDefault();
-    setSubmitted(true);
+    if (CONTACT_FORM_ENDPOINT.startsWith('PASTE_')) {
+      console.warn('Vividink: CONTACT_FORM_ENDPOINT is not configured yet.');
+      setStatus('error');
+      return;
+    }
+    setStatus('sending');
+    try {
+      // no-cors + text/plain avoids Google Apps Script's CORS preflight issues.
+      await fetch(CONTACT_FORM_ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(formData)
+      });
+      setStatus('success');
+    } catch (err) {
+      setStatus('error');
+    }
   };
 
   return (
@@ -181,7 +202,7 @@ const ContactPage = ({ lang }) => {
           </div>
 
           <div className="contact-form-wrap">
-            {submitted ? (
+            {status === 'success' ? (
               <div className="contact-success">
                 <div className="contact-success__mark">✓</div>
                 <h3>{c.success.title[lang]}</h3>
@@ -189,55 +210,27 @@ const ContactPage = ({ lang }) => {
               </div>
             ) : (
               <form className="contact-form" onSubmit={handleSubmit}>
-                <div className="form-row">
-                  <div className="form-group">
-                    <label>{c.form.name[lang]}</label>
-                    <input type="text" required value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
-                  </div>
-                  <div className="form-group">
-                    <label>{c.form.company[lang]}</label>
-                    <input type="text" value={formData.company} onChange={e => setFormData({ ...formData, company: e.target.value })} />
-                  </div>
-                </div>
-
-                <div className="form-row">
-                  <div className="form-group">
-                    <label>{c.form.email[lang]}</label>
-                    <input type="email" required value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} />
-                  </div>
-                  <div className="form-group">
-                    <label>{c.form.phone[lang]}</label>
-                    <input type="tel" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} />
-                  </div>
+                <div className="form-group">
+                  <label>{c.form.name[lang]}</label>
+                  <input type="text" required value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
                 </div>
 
                 <div className="form-group">
-                  <label>{c.form.scope[lang]}</label>
-                  <select value={formData.scope} onChange={e => setFormData({ ...formData, scope: e.target.value })}>
-                    <option value="">— {lang === 'ar' ? 'اختر النطاق' : 'Select'} —</option>
-                    {c.scopes.map((s, i) => (
-                      <option key={i} value={s.en}>{s[lang]}</option>
-                    ))}
-                  </select>
+                  <label>{c.form.email[lang]}</label>
+                  <input type="email" required value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} />
                 </div>
 
                 <div className="form-group">
-                  <label>{c.form.budget[lang]}</label>
-                  <select value={formData.budget} onChange={e => setFormData({ ...formData, budget: e.target.value })}>
-                    <option value="">— {lang === 'ar' ? 'اختر الميزانية' : 'Select'} —</option>
-                    {c.budgets.map((b, i) => (
-                      <option key={i} value={b}>{b}</option>
-                    ))}
-                  </select>
+                  <label>{c.form.message[lang]}</label>
+                  <textarea rows="5" required value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })}></textarea>
                 </div>
 
-                <div className="form-group">
-                  <label>{c.form.brief[lang]}</label>
-                  <textarea rows="4" value={formData.brief} onChange={e => setFormData({ ...formData, brief: e.target.value })}></textarea>
-                </div>
+                {status === 'error' && (
+                  <p className="form-error">{c.form.error[lang]}</p>
+                )}
 
-                <button type="submit" className="btn btn--primary btn--full">
-                  {c.form.submit[lang]}
+                <button type="submit" className="btn btn--primary btn--full" disabled={status === 'sending'}>
+                  {status === 'sending' ? c.form.submitting[lang] : c.form.submit[lang]}
                 </button>
               </form>
             )}
