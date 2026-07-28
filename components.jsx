@@ -221,6 +221,82 @@ const ServiceRows = ({ lang, onNav }) => {
   );
 };
 
+// === Process / Client Journey =====================================
+const ProcessSteps = ({ lang }) => {
+  const steps = window.I18N.process;
+  return (
+    <div className="process">
+      {steps.map((s, i) => (
+        <div key={i} className="process__step">
+          <div className="process__head">
+            <span className="process__num">{String(i + 1).padStart(2, '0')}</span>
+            <span className="process__duration">{s.duration[lang]}</span>
+          </div>
+          <h3 className="process__title">{s.title[lang]}</h3>
+          <p className="process__desc">{s.desc[lang]}</p>
+          <p className="process__deliverable">
+            <span className="process__deliverable-lbl">{lang === 'ar' ? 'المخرج' : 'DELIVERABLE'}</span>
+            {s.deliverable[lang]}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+// === FAQ Accordion (with JSON-LD schema for SEO rich results) =====
+const FaqItem = ({ item, lang, open, onToggle }) => (
+  <div className={`faq__item ${open ? 'is-open' : ''}`}>
+    <button className="faq__q" onClick={onToggle}>
+      <span>{item.q[lang]}</span>
+      <span className="faq__icon">{open ? '−' : '+'}</span>
+    </button>
+    <div className="faq__a-wrap">
+      <p className="faq__a">{item.a[lang]}</p>
+    </div>
+  </div>
+);
+
+const Faq = ({ lang }) => {
+  const items = window.I18N.faq;
+  const [openIndex, setOpenIndex] = useState(0);
+
+  useEffect(() => {
+    const schema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: items.map(it => ({
+        '@type': 'Question',
+        name: it.q.en,
+        acceptedAnswer: { '@type': 'Answer', text: it.a.en }
+      }))
+    };
+    let tag = document.getElementById('faq-schema');
+    if (!tag) {
+      tag = document.createElement('script');
+      tag.type = 'application/ld+json';
+      tag.id = 'faq-schema';
+      document.head.appendChild(tag);
+    }
+    tag.textContent = JSON.stringify(schema);
+    return () => { tag && tag.remove(); };
+  }, []);
+
+  return (
+    <div className="faq">
+      {items.map((it, i) => (
+        <FaqItem
+          key={i}
+          item={it}
+          lang={lang}
+          open={openIndex === i}
+          onToggle={() => setOpenIndex(openIndex === i ? -1 : i)}
+        />
+      ))}
+    </div>
+  );
+};
+
 // === Metrics row ==================================================
 const Metrics = ({ lang }) => {
   const items = window.I18N.metrics;
@@ -424,5 +500,5 @@ const CtaStrip = ({ lang }) => {
 Object.assign(window, {
   Loader, ScrollRule, Nav, MenuOverlay, Hero, SecHead,
   Manifesto, ServiceRows, Metrics, WorkCard, WorkGrid, Footer, CaseStudy, T,
-  PageHero, CtaStrip,
+  PageHero, CtaStrip, ProcessSteps, Faq,
 });
