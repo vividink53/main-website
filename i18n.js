@@ -67,6 +67,131 @@ window.I18N = {
     num: '01'
   },
 
+  process_section: {
+    eyebrow: { ar: 'منهجيتنا', en: 'OUR PROCESS' },
+    title: {
+      ar: 'كيف نصنع الأثر الخالد .',
+      en: 'How We Craft the Immortal Mark.'
+    },
+    num: '02'
+  },
+
+  process: [
+    {
+      title: { ar: 'الاكتشاف والبحث', en: 'Discovery & Research' },
+      duration: { ar: '3 – 5 أيام', en: '3–5 Days' },
+      desc: {
+        ar: 'نستهلّ الشراكة بجلسة استكشاف عميقة نتعرّف فيها على جوهر علامتك ، ونحلّل موقعها في السوق ومنافسيها عن كثب .',
+        en: 'We begin with an in-depth discovery session, understanding your brand\'s essence and closely analyzing its market position and competitors.'
+      },
+      deliverable: {
+        ar: 'تقرير موجز يحدّد الفرصة الاستراتيجية وموضع علامتك .',
+        en: 'A concise brief defining your strategic opportunity and market position.'
+      }
+    },
+    {
+      title: { ar: 'الاستراتيجية الإبداعية', en: 'Creative Strategy' },
+      duration: { ar: 'أسبوع واحد', en: '1 Week' },
+      desc: {
+        ar: 'نصوغ المفهوم الجوهري لهويتك : الرسالة ، الشخصية البصرية ، والجمهور المستهدف بدقة .',
+        en: 'We craft the core concept of your identity — message, visual personality, and a precisely defined audience.'
+      },
+      deliverable: {
+        ar: 'وثيقة استراتيجية متكاملة مع اتجاهين أو ثلاثة إبداعية للاختيار .',
+        en: 'A complete strategic document with two to three creative directions to choose from.'
+      }
+    },
+    {
+      title: { ar: 'التصميم والتنفيذ', en: 'Design & Execution' },
+      duration: { ar: 'أسبوعان إلى ثلاثة', en: '2–3 Weeks' },
+      desc: {
+        ar: 'ننتقل إلى التنفيذ الفعلي ، بجولتَي مراجعة معك لضبط كل تفصيل بدقة متناهية .',
+        en: 'We move into full execution, with two review rounds alongside you to refine every detail with precision.'
+      },
+      deliverable: {
+        ar: 'تصاميم نهائية جاهزة بكل الصيغ والمقاسات المطلوبة .',
+        en: 'Final designs delivered in every required format and size.'
+      }
+    },
+    {
+      title: { ar: 'التسليم', en: 'Delivery' },
+      duration: { ar: 'يومان إلى ثلاثة', en: '2–3 Days' },
+      desc: {
+        ar: 'نجهّز حزمة الملفات الكاملة ودليل الاستخدام الذي يضمن اتساق علامتك أينما ظهرت .',
+        en: 'We prepare the complete file package and a usage guide ensuring your brand\'s consistency wherever it appears.'
+      },
+      deliverable: {
+        ar: 'حزمة ملفات جاهزة ودليل هوية بصرية شامل .',
+        en: 'A ready-to-use file package and comprehensive brand guidelines.'
+      }
+    },
+    {
+      title: { ar: 'المتابعة والنمو', en: 'Growth & Follow-Up' },
+      duration: { ar: 'شراكة مستمرة', en: 'Ongoing Partnership' },
+      desc: {
+        ar: 'نستمر بجانبك : إدارة حضورك الرقمي ومتابعة الأداء بعين استراتيجية دائمة .',
+        en: 'We remain by your side — managing your digital presence and tracking performance with continuous strategic insight.'
+      },
+      deliverable: {
+        ar: 'تقارير أداء دورية وتحسين مستمر قائم على البيانات .',
+        en: 'Regular performance reports and continuous, data-driven refinement.'
+      }
+    }
+  ],
+
+  faq_section: {
+    eyebrow: { ar: 'الأسئلة الشائعة', en: 'FAQ' },
+    title: {
+      ar: 'أسئلة يطرحها عملاؤنا كثيراً .',
+      en: 'Questions Our Clients Often Ask.'
+    }
+  },
+
+  faq: [
+    {
+      q: { ar: 'كم تبلغ تكلفة تصميم هوية بصرية احترافية؟', en: 'How much does professional brand identity design cost?' },
+      a: {
+        ar: 'تختلف التكلفة باختلاف نطاق المشروع وعمقه — من شعار مفرد إلى نظام هوية بصرية متكامل . نضع لكل عميل عرضاً مخصصاً بعد جلسة الاكتشاف الأولى ، بما يتناسب مع طموح علامته وميزانيتها الفعلية .',
+        en: 'Cost varies with project scope and depth — from a single logo to a full brand identity system. We provide a tailored quote after the initial discovery session, matched to your brand\'s ambition and actual budget.'
+      }
+    },
+    {
+      q: { ar: 'ما هي أفضل وكالة لتصميم الهوية البصرية في السعودية ودول الخليج؟', en: 'What is the best brand identity design agency in Saudi Arabia and the Gulf?' },
+      a: {
+        ar: 'Vividink وكالة إبداعية متخصصة بتصميم الهوية البصرية وإدارة السوشل ميديا ، تخدم عملاء في سوريا والسعودية ودول الخليج العربي بفلسفة تجمع بين الدقة الهندسية والجمال الكلاسيكي . نفخر بشراكات مثبتة مع علامات في قطاعات التجميل والرياضة والتصميم الداخلي والأغذية .',
+        en: 'Vividink is a creative agency specializing in brand identity design and social media management, serving clients in Syria, Saudi Arabia, and the Gulf with a philosophy that bridges geometric precision and classical beauty. We\'re proud of proven partnerships across cosmetics, sports, interior design, and food sectors.'
+      }
+    },
+    {
+      q: { ar: 'كم تستغرق مدة تصميم هوية بصرية كاملة؟', en: 'How long does a complete brand identity project take?' },
+      a: {
+        ar: 'تستغرق الهوية البصرية الكاملة عادة من أربعة إلى ستة أسابيع ، من جلسة الاكتشاف الأولى وحتى تسليم حزمة الملفات النهائية ، وفق منهجيتنا المكوّنة من خمس مراحل واضحة .',
+        en: 'A complete brand identity typically takes four to six weeks, from the initial discovery session through final file delivery, following our clear five-stage methodology.'
+      }
+    },
+    {
+      q: { ar: 'ما الفرق بين تصميم الشعار والهوية البصرية الكاملة؟', en: 'What\'s the difference between logo design and a full brand identity?' },
+      a: {
+        ar: 'الشعار عنصر واحد فقط ، بينما الهوية البصرية الكاملة نظام متكامل يشمل الشعار والألوان والخطوط ودليل الاستخدام وتطبيقاته عبر جميع نقاط التماس مع الجمهور — من السوشل ميديا إلى التغليف والمطبوعات .',
+        en: 'A logo is a single element, while a full brand identity is a complete system including the mark, color palette, typography, usage guidelines, and applications across every audience touchpoint — from social media to packaging and print.'
+      }
+    },
+    {
+      q: { ar: 'هل يمكن إدارة حسابات السوشل ميديا عن بُعد لعميل خارج سوريا؟', en: 'Can social media accounts be managed remotely for clients outside Syria?' },
+      a: {
+        ar: 'نعم بالتأكيد . ندير حالياً حسابات عملاء في السعودية ودول الخليج عن بُعد بالكامل ، من صناعة المحتوى إلى الجدولة والتحليل ومتابعة الأداء ، بنفس المستوى من الدقة والالتزام .',
+        en: 'Absolutely. We currently manage clients in Saudi Arabia and the Gulf entirely remotely — from content creation to scheduling, analytics, and performance tracking — with the same level of precision and commitment.'
+      }
+    },
+    {
+      q: { ar: 'ما هي الخدمات التي تقدّمها Vividink بالضبط؟', en: 'What services does Vividink offer exactly?' },
+      a: {
+        ar: 'نقدّم أربع خدمات أساسية : تصميم الهوية البصرية الشاملة ، إدارة السوشل ميديا والاستراتيجية ، إنتاج وتحرير الفيديو والريلز ، وإنتاج محتوى مدعوم بالذكاء الاصطناعي — كل ذلك ضمن منظومة إبداعية واحدة متكاملة .',
+        en: 'We offer four core services: comprehensive brand identity design, social media management and strategy, video and reels production, and AI-powered content production — all within one integrated creative system.'
+      }
+    }
+  ],
+
   services: [
     {
       id: 'branding',
@@ -106,7 +231,7 @@ window.I18N = {
       ar: 'علامات صُنعت لتخلد .',
       en: 'Marks Crafted to Endure.'
     },
-    num: '02'
+    num: '03'
   },
 
   portfolio: [
