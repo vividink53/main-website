@@ -20,6 +20,15 @@ const HomePage = ({ lang, onNav }) => {
         <ServiceRows lang={lang} onNav={onNav} />
       </section>
 
+      <section className="section" data-screen-label="Process">
+        <SecHead
+          eyebrow={T('process_section.eyebrow', lang)}
+          title={lang === 'ar' ? window.I18N.process_section.title.ar : window.I18N.process_section.title.en}
+          num={T('process_section.num', lang)}
+        />
+        <ProcessSteps lang={lang} />
+      </section>
+
       <section className="section" data-screen-label="Work">
         <SecHead
           eyebrow={T('work_section.eyebrow', lang)}
@@ -175,6 +184,15 @@ const ContactPage = ({ lang }) => {
         title={c.title[lang]}
         sub={c.sub[lang]}
       />
+
+      <section className="section faq-sec" data-screen-label="FAQ">
+        <SecHead
+          eyebrow={T('faq_section.eyebrow', lang)}
+          title={lang === 'ar' ? window.I18N.faq_section.title.ar : window.I18N.faq_section.title.en}
+          num=""
+        />
+        <Faq lang={lang} />
+      </section>
 
       <section className="section contact-grid-sec">
         <div className="contact-grid">
