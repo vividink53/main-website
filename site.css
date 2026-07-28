@@ -452,7 +452,8 @@ body[dir="rtl"] .sec-head__eye { font-family: var(--font-arabic); letter-spacing
   justify-self: start;
 }
 body[dir="rtl"] .sec-head__title {
-  font-family: var(--font-arabic); font-style: normal;
+  font-family: var(--font-arabic); font-style: normal; font-weight: 500;
+  font-size: clamp(30px, 5.6vw, 58px);
   letter-spacing: 0; line-height: 1.4;
 }
 .sec-head__num {
@@ -1184,15 +1185,15 @@ body[dir="rtl"] .work-detail__scope { font-family: var(--font-arabic); line-heig
 .process {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 0;
+  gap: 0 40px;
 }
 .process__step {
-  padding: 0 28px 0 0;
+  padding: 0 32px 0 0;
   border-right: 1px solid var(--rule);
 }
-.process__step:last-child { border-right: none; }
-body[dir="rtl"] .process__step { padding: 0 0 0 28px; border-right: none; border-left: 1px solid var(--rule); }
-body[dir="rtl"] .process__step:last-child { border-left: none; }
+.process__step:last-child { border-right: none; padding-right: 0; }
+body[dir="rtl"] .process__step { padding: 0 0 0 32px; border-right: none; border-left: 1px solid var(--rule); }
+body[dir="rtl"] .process__step:last-child { border-left: none; padding-left: 0; }
 .process__head {
   display: flex; align-items: baseline; justify-content: space-between;
   margin-bottom: 20px;
