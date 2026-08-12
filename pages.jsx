@@ -185,15 +185,6 @@ const ContactPage = ({ lang }) => {
         sub={c.sub[lang]}
       />
 
-      <section className="section faq-sec" data-screen-label="FAQ">
-        <SecHead
-          eyebrow={T('faq_section.eyebrow', lang)}
-          title={lang === 'ar' ? window.I18N.faq_section.title.ar : window.I18N.faq_section.title.en}
-          num=""
-        />
-        <Faq lang={lang} />
-      </section>
-
       <section className="section contact-grid-sec">
         <div className="contact-grid">
           <div className="contact-info">
@@ -254,6 +245,15 @@ const ContactPage = ({ lang }) => {
             )}
           </div>
         </div>
+      </section>
+
+      <section className="section faq-sec" data-screen-label="FAQ">
+        <SecHead
+          eyebrow={T('faq_section.eyebrow', lang)}
+          title={lang === 'ar' ? window.I18N.faq_section.title.ar : window.I18N.faq_section.title.en}
+          num=""
+        />
+        <Faq lang={lang} />
       </section>
     </div>
   );
