@@ -23,7 +23,7 @@ window.I18N = {
     city: { ar: 'اللاذقية ، سوريا', en: 'Latakia, Syria' },
     rights: { ar: '© 2026 Vividink. جميع الحقوق محفوظة .', en: '© 2026 Vividink. All rights reserved.' },
     cols: {
-      work: { ar: 'الأعمال', en: 'Work' },
+      work: { ar: 'الخدمات', en: 'Services' },
       studio: { ar: 'الوكالة', en: 'Studio' },
       contact: { ar: 'تواصل', en: 'Contact' }
     }
@@ -37,7 +37,7 @@ window.I18N = {
       en: 'A full-service creative engine crafting unforgettable visual identities — from Latakia to Saudi Arabia and the Gulf. Classical roots, contemporary edge.'
     },
     ctaWork: { ar: 'شاهد الأعمال', en: 'View Work' },
-    ctaTalk: { ar: 'ابدأ مشروعاً ←', en: 'Start a Project ←' },
+    ctaTalk: { ar: 'احجز جلسة اكتشاف ←', en: 'Book a Discovery Call →' },
     immortalMark: { ar: 'صناع الأثر الخالد .', en: 'Creators of the Immortal Mark.' }
   },
 
