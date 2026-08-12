@@ -163,8 +163,8 @@ const Hero = ({ lang, onNav, videoOpacity }) => {
         <h1 className="hero__display">{h.title[lang]}</h1>
         <p className="hero__lede">{h.sub[lang]}</p>
         <div className="hero__cta">
-          <button className="btn btn--primary" onClick={() => onNav('work')}>{h.ctaWork[lang]}</button>
-          <button className="btn btn--ghost" onClick={() => onNav('contact')}>{h.ctaTalk[lang]}</button>
+          <button className="btn btn--ghost" onClick={() => onNav('work')}>{h.ctaWork[lang]}</button>
+          <button className="btn btn--primary" onClick={() => onNav('contact')}>{h.ctaTalk[lang]}</button>
         </div>
       </div>
 
@@ -190,12 +190,13 @@ const Manifesto = ({ lang }) => {
   const m = window.I18N.manifesto;
   return (
     <section className="manifesto" data-screen-label="Manifesto">
+      <img className="manifesto__texture" src="hero-statue.svg" alt="" aria-hidden="true" />
       <div className="manifesto__inner">
         <p className="manifesto__big">{m.big[lang]}</p>
         <div className="manifesto__body">
           <p>{m.sub[lang]}</p>
           <div className="manifesto__sig">
-            <img src="v-mark.png" alt="Vividink logo" />
+            <img src="v-ink-signature.svg" alt="Vividink ink signature" />
             <span>VIVIDINK</span>
           </div>
         </div>
@@ -205,13 +206,36 @@ const Manifesto = ({ lang }) => {
 };
 
 // === Service Rows (home + services page) =========================
+const SERVICE_ICONS = {
+  branding: (
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 4 L28 16 L16 28 L4 16 Z" stroke="currentColor" strokeWidth="1.2" />
+      <circle cx="16" cy="16" r="3" fill="currentColor" />
+    </svg>
+  ),
+  social: (
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="7" cy="16" r="3" stroke="currentColor" strokeWidth="1.2" />
+      <circle cx="25" cy="7" r="3" stroke="currentColor" strokeWidth="1.2" />
+      <circle cx="25" cy="25" r="3" stroke="currentColor" strokeWidth="1.2" />
+      <path d="M10 14.5L22 8.5M10 17.5L22 23.5" stroke="currentColor" strokeWidth="1.2" />
+    </svg>
+  ),
+  video: (
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="4" width="24" height="24" rx="3" stroke="currentColor" strokeWidth="1.2" />
+      <path d="M13 11L22 16L13 21Z" fill="currentColor" />
+    </svg>
+  )
+};
+
 const ServiceRows = ({ lang, onNav }) => {
   const list = window.I18N.services;
   return (
     <div className="svc">
       {list.map((s, i) => (
         <div key={i} className="svc__row" onClick={() => onNav && onNav('services')}>
-          <span className="svc__num">{s.num}</span>
+          <span className="svc__icon">{SERVICE_ICONS[s.id] || SERVICE_ICONS.branding}</span>
           <h3 className="svc__ttl">{lang === 'ar' ? s.title.ar : s.title.en}</h3>
           <p className="svc__desc">{lang === 'ar' ? s.desc.ar : s.desc.en}</p>
           <span className="svc__arrow">{lang === 'ar' ? 'اطّلع ←' : 'READ →'}</span>
@@ -349,15 +373,20 @@ const WorkDetail = ({ data, lang, onClose }) => {
   return (
     <div className="work-detail" onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
       <div className="work-detail__shell">
-        <button className="work-detail__close" onClick={onClose}>
-          <span>{lang === 'ar' ? 'إغلاق' : 'Close'}</span><span className="x">×</span>
+        <button className="work-detail__close" onClick={onClose} aria-label={lang === 'ar' ? 'إغلاق' : 'Close'}>
+          <span className="x">×</span>
         </button>
         <div className="work-detail__img"><img src={data.img} alt={data.title[lang]} /></div>
         <div className="work-detail__body">
-          <p className="work-detail__cat">{data.cat[lang]}</p>
+          <div className="work-detail__head">
+            <p className="work-detail__cat">{data.cat[lang]}</p>
+            <span className="work-detail__year">{data.year}</span>
+          </div>
           <h2 className="work-detail__title">{data.title[lang]}</h2>
-          <p className="work-detail__scope">{data.scope[lang]}</p>
-          <span className="work-detail__year">{data.year}</span>
+          <div className="work-detail__scope-block">
+            <span className="work-detail__scope-lbl">{lang === 'ar' ? 'نطاق المشروع' : 'PROJECT SCOPE'}</span>
+            <p className="work-detail__scope">{data.scope[lang]}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -392,13 +421,13 @@ const Footer = ({ onNav, lang }) => (
       <div className="foot__col">
         <h4>{T('footer.cols.work', lang)}</h4>
         {window.I18N.services.map(s => (
-          <a key={s.id} onClick={() => onNav('work')}>{s.title[lang]}</a>
+          <a key={s.id} onClick={() => onNav('services')}>{s.title[lang]}</a>
         ))}
       </div>
       <div className="foot__col">
         <h4>{T('footer.cols.studio', lang)}</h4>
         <a onClick={() => onNav('about')}>{T('nav.about', lang)}</a>
-        <a onClick={() => onNav('services', lang)}>{T('nav.services', lang)}</a>
+        <a onClick={() => onNav('work')}>{T('nav.work', lang)}</a>
       </div>
       <div className="foot__col">
         <h4>{T('footer.cols.contact', lang)}</h4>
@@ -481,6 +510,7 @@ const CtaStrip = ({ lang }) => {
   const c = window.I18N.cta_strip;
   return (
     <section className="cta-strip" data-screen-label="CTA Strip">
+      <img className="cta-strip__texture" src="still-drapery.svg" alt="" aria-hidden="true" />
       <div className="cta-strip__inner">
         <h2 className="cta-strip__title">{c.title[lang]}</h2>
         <p className="cta-strip__sub">{c.sub[lang]}</p>
