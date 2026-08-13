@@ -236,6 +236,9 @@ body[dir="rtl"] .menu__aside .contact-line { font-family: var(--font-arabic); }
   font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase;
   color: var(--fg-subtle);
 }
+body[dir="rtl"] .menu__base {
+  font-family: var(--font-arabic); letter-spacing: 0; text-transform: none; font-size: 13px;
+}
 
 /* ========== HERO ========== */
 .hero {
@@ -300,6 +303,12 @@ body[dir="rtl"] .menu__aside .contact-line { font-family: var(--font-arabic); }
   font-size: 9px; letter-spacing: 0.42em; text-transform: uppercase;
   color: var(--fg-subtle);
   display: flex; align-items: center; gap: 10px;
+}
+body[dir="rtl"] .hero__corner-tl,
+body[dir="rtl"] .hero__corner-tr,
+body[dir="rtl"] .hero__corner-bl,
+body[dir="rtl"] .hero__corner-br {
+  font-family: var(--font-arabic); letter-spacing: 0; text-transform: none; font-size: 12px;
 }
 .hero__corner-tl { top: 110px; left: 64px; }
 .hero__corner-tr { top: 110px; right: 64px; }
@@ -664,6 +673,9 @@ body[dir="rtl"] .metric__lbl { font-family: var(--font-arabic); letter-spacing: 
   background: var(--vi-black);
   padding: 6px 10px;
   border: 1px solid var(--accent);
+}
+body[dir="rtl"] .work-card__tag {
+  font-family: var(--font-arabic); letter-spacing: 0; text-transform: none; font-size: 12px;
 }
 .work-card__body {
   padding: 18px 4px 0;
@@ -1262,6 +1274,9 @@ body[dir="rtl"] .process__deliverable { font-family: var(--font-arabic); }
   font-family: var(--font-sans); font-weight: 500; font-size: 9px;
   letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);
   margin-bottom: 6px;
+}
+body[dir="rtl"] .process__deliverable-lbl {
+  font-family: var(--font-arabic); letter-spacing: 0; text-transform: none; font-size: 12px;
 }
 
 /* ========== FAQ ACCORDION ========== */
