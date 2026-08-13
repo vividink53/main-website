@@ -317,7 +317,11 @@ body[dir="rtl"] .menu__aside .contact-line { font-family: var(--font-arabic); }
   opacity: 0; transform: translateY(12px);
   animation: heroIn 900ms var(--ease-cine) 1800ms forwards;
 }
-.hero__eyebrow .ln { width: 36px; height: 1px; background: var(--accent); }
+body[dir="rtl"] .hero__eyebrow {
+  font-family: var(--font-arabic); font-weight: 500;
+  font-size: 14px; letter-spacing: 0; text-transform: none;
+}
+.hero__eyebrow .ln { width: 36px; height: 1px; background: var(--accent); flex-shrink: 0; }
 
 .hero__display {
   font-family: var(--font-display);
@@ -1320,8 +1324,11 @@ body[dir="rtl"] .faq__a { font-family: var(--font-arabic); line-height: 2; paddi
   .faq__a { padding-right: 0; }
   body[dir="rtl"] .faq__a { padding-left: 0; }
   .hero__inner { padding: 160px 28px 100px; }
+  .hero__eyebrow { font-size: 12px; flex-wrap: wrap; row-gap: 8px; }
+  body[dir="rtl"] .hero__eyebrow { font-size: 13px; }
   .hero__corner-tl, .hero__corner-tr { display: none; }
-  .hero__corner-bl, .hero__corner-br { left: 28px; right: 28px; bottom: 28px; }
+  .hero__corner-bl { left: 28px; right: auto; bottom: 28px; }
+  .hero__corner-br { right: 28px; left: auto; bottom: 28px; }
   .section, .about-split, .pillars, .svc-detail, .contact-block, .page-hero, .manifesto { padding-left: 28px; padding-right: 28px; }
   .work-grid { column-count: 1 !important; }
   .menu__body { grid-template-columns: 1fr; padding: 40px 28px; gap: 32px; }
